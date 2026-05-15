@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司车辆管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius: 8px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .menu-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            display: none;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 60px;
+            z-index: 99;
+        }
+        
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            overflow-x: auto;
+        }
+        
+        .nav-btn {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            background: transparent;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        
+        .nav-btn:hover {
+            background: var(--gray-100);
+            color: var(--gray-800);
+        }
+        
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Main Content */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        /* Dashboard */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .stat-card.success { border-left-color: var(--success); }
+        .stat-card.warning { border-left-color: var(--warning); }
+        .stat-card.danger { border-left-color: var(--danger); }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        
+        .stat-label {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+        }
+        
+        .stat-change {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .stat-change.up { color: var(--success); }
+        .stat-change.down { color: var(--danger); }
+        
+        /* Charts Section */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chart-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-800);
+        }
+        
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .bar-label {
+            width: 80px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            flex-shrink: 0;
+        }
+        
+        .bar-track {
+            flex: 1;
+            height: 24px;
+            background: var(--gray-100);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .bar-fill {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            padding-left: 0.75rem;
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .bar-fill.primary { background: linear-gradient(90deg, var(--primary), #3b82f6); }
+        .bar-fill.success { background: linear-gradient(90deg, var(--success), #34d399); }
+        .bar-fill.warning { background: linear-gradient(90deg, var(--warning), #fbbf24); }
+        .bar-fill.purple { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .bar-fill.danger { background: linear-gradient(90deg, var(--danger), #f87171); }
+        
+        /* Recent Activity */
+        .activity-list {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .activity-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--gray-200);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .activity-item {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .activity-icon.use { background: #dbeafe; }
+        .activity-icon.repair { background: #fef3c7; }
+        .activity-icon.maintain { background: #d1fae5; }
+        
+        .activity-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .activity-title {
+            font-weight: 500;
+            color: var(--gray-800);
+            margin-bottom: 0.25rem;
+        }
+        
+        .activity-meta {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+        
+        /* Table Styles */
+        .table-container {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .table-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .table-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .search-input {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            width: 200px;
+        }
+        
+        .filter-select {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            background: white;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        
+        th {
+            background: var(--gray-50);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            white-space: nowrap;
+        }
+        
+        td {
+            font-size: 0.9rem;
+        }
+        
+        tr:hover {
+            background: var(--gray-50);
+        }
+        
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .badge-purple {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+        
+        .badge-gray {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        
+        .btn-reimbursed {
+            background: #ede9fe;
+            color: #5b21b6;
+            border: 1px solid #c4b5fd;
+        }
+        
+        .btn-reimburse {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fcd34d;
+        }
+        
+        .btn-reimburse:hover {
+            background: #fde68a;
+        }
+        
+        .btn-reimbursed:hover {
+            background: #ddd6fe;
+        }
+        
+        /* Usage expandable rows */
+        .usage-main-row {
+            cursor: pointer;
+            user-select: none;
+        }
+        .usage-main-row:hover {
+            background: #eff6ff !important;
+        }
+        .usage-main-row td:first-child::before {
+            content: '▶';
+            display: inline-block;
+            margin-right: 6px;
+            font-size: 0.65rem;
+            color: var(--gray-400);
+            transition: transform 0.2s;
+            vertical-align: middle;
+        }
+        .usage-main-row.expanded td:first-child::before {
+            transform: rotate(90deg);
+            color: var(--primary);
+        }
+        .usage-detail-row {
+            display: none;
+            background: #f8faff;
+        }
+        .usage-detail-row.show {
+            display: table-row;
+        }
+        .usage-detail-row td {
+            padding: 0 !important;
+            border-bottom: 2px solid #dbeafe;
+        }
+        .usage-detail-inner {
+            padding: 1rem 1.5rem 1rem 2.5rem;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.75rem 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .detail-label {
+            font-size: 0.72rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .detail-value {
+            font-size: 0.9rem;
+            color: var(--gray-800);
+            font-weight: 500;
+        }
+        .detail-value.highlight {
+            color: var(--primary);
+        }
+        .detail-divider {
+            border: none;
+            border-top: 1px dashed var(--gray-200);
+            margin: 0.75rem 0;
+        }
+        .cost-breakdown {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .cost-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.8rem;
+            color: var(--gray-700);
+        }
+        .cost-tag-label {
+            color: var(--gray-500);
+        }
+        .cost-total-tag {
+            background: #dbeafe;
+            border-color: #93c5fd;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--gray-300);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-sm {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.8rem;
+        }
+        
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        
+        .modal-overlay.show .modal {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-500);
+            padding: 0.25rem;
+            line-height: 1;
+        }
+        
+        .modal-body {
+            padding: 1.25rem;
+        }
+        
+        .modal-footer {
+            padding: 1rem 1.25rem;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+        
+        /* Form */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.625rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            /* Header */
+            .header h1 span { display: none; }
+            
+            /* Navigation - 固定底部 */
+            .nav {
+                position: fixed;
+                bottom: 0;
+                top: auto;
+                left: 0;
+                right: 0;
+                border-bottom: none;
+                border-top: 1px solid var(--gray-200);
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            .nav-content {
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+                justify-content: space-around;
+                padding: 0.25rem 0.5rem;
+            }
+            .nav-btn {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.7rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+                border-radius: 8px;
+                min-width: 60px;
+            }
+            .nav-btn.active {
+                background: var(--primary);
+                color: white;
+            }
+            
+            /* Main content - 底部留导航空间 */
+            .main {
+                padding: 0.75rem;
+                padding-bottom: 80px;
+            }
+            
+            /* Modal - 从底部弹出 */
+            .modal-overlay {
+                align-items: flex-end;
+                padding: 0;
+            }
+            .modal-overlay.show .modal {
+                transform: translateY(0);
+                border-radius: 16px 16px 0 0;
+            }
+            .modal {
+                max-width: 100%;
+                width: 100%;
+                max-height: 92vh;
+                border-radius: 16px 16px 0 0;
+                transform: translateY(100%);
+            }
+            .modal-header {
+                padding: 1rem;
+                position: sticky;
+                top: 0;
+                background: white;
+                border-bottom: 1px solid var(--gray-200);
+                z-index: 10;
+            }
+            .modal-close {
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .modal-body {
+                padding: 1rem;
+                max-height: calc(92vh - 130px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .modal-footer {
+                padding: 1rem;
+                padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+                position: sticky;
+                bottom: 0;
+                background: white;
+                border-top: 1px solid var(--gray-200);
+            }
+            .modal-footer .btn {
+                flex: 1;
+                min-height: 48px;
+                font-size: 1rem;
+                border-radius: 10px;
+            }
+            
+            /* Form - 更大的控件 */
+            .form-group { margin-bottom: 1rem; }
+            .form-label {
+                font-size: 0.85rem;
+                font-weight: 600;
+                margin-bottom: 0.375rem;
+            }
+            .form-control {
+                padding: 0.75rem;
+                font-size: 16px; /* 防止iOS缩放 */
+                border-radius: 10px;
+                min-height: 48px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            /* Table - 横向滚动 */
+            .table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                border-radius: 10px;
+                background: white;
+                box-shadow: var(--shadow);
+            }
+            .table-container table {
+                min-width: 700px;
+            }
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+            th { font-size: 0.72rem; }
+            
+            /* 操作按钮 - 放大 */
+            .action-btns {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+            .btn-sm {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.75rem;
+                border-radius: 6px;
+                min-height: 32px;
+                min-width: 44px;
+            }
+            .btn-reimburse, .btn-reimbursed {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.75rem;
+                min-height: 32px;
+            }
+            
+            /* Stats - 2列网格 */
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+            .stat-card {
+                padding: 0.875rem;
+            }
+            .stat-value { font-size: 1.25rem; }
+            .stat-label { font-size: 0.72rem; }
+            
+            /* 展开详情 - 手机友好 */
+            .usage-detail-inner { padding: 0.75rem; }
+            .detail-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem 1rem;
+            }
+            .detail-label { font-size: 0.65rem; }
+            .detail-value { font-size: 0.85rem; }
+            .cost-breakdown { gap: 4px; }
+            .cost-tag {
+                padding: 0.2rem 0.5rem;
+                font-size: 0.75rem;
+            }
+            
+            /* 搜索和筛选 - 堆叠 */
+            .table-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .search-input, .filter-select {
+                width: 100%;
+                height: 44px;
+                font-size: 15px;
+            }
+            .table-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            /* Toast - 底部居中 */
+            .toast-container {
+                bottom: 90px;
+                right: 1rem;
+                left: 1rem;
+            }
+            .toast {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            /* 列表主行 - 增加点击区域 */
+            .usage-main-row td:first-child::before {
+                font-size: 0.75rem;
+            }
+            
+            /* Pagination */
+            .pagination { padding: 0.75rem 0; }
+            .page-btn {
+                padding: 0.5rem 0.75rem;
+                min-height: 40px;
+                min-width: 40px;
+            }
+            .page-info { font-size: 0.8rem; }
+        }
+        
+        /* Empty State */
+        .empty-state {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--gray-500);
+        }
+        
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        
+        .empty-state h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+        }
+        
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .toast {
+            background: var(--gray-800);
+            color: white;
+            padding: 0.875rem 1.25rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+            max-width: 350px;
+        }
+        
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+        .toast.warning { background: var(--warning); }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .page-btn {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            background: white;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        .page-btn:hover {
+            background: var(--gray-100);
+        }
+        
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .page-info {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin: 0 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                    <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                    <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"/>
+                </svg>
+                <span>公司车辆管理系统</span>
+            </h1>
+            <button class="menu-btn" onclick="toggleMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <button class="nav-btn active" data-section="dashboard" onclick="switchSection('dashboard')">
+                📊 数据看板
+            </button>
+            <button class="nav-btn" data-section="usage" onclick="switchSection('usage')">
+                📝 用车登记
+            </button>
+            <button class="nav-btn" data-section="vehicles" onclick="switchSection('vehicles')">
+                🚗 车辆管理
+            </button>
+            <button class="nav-btn" data-section="maintenance" onclick="switchSection('maintenance')">
+                🔧 维修保养
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="stats-grid" id="statsGrid"></div>
+            
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-title">📈 月度用车趋势</div>
+                    <div class="bar-chart" id="usageChart"></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">💰 维修费用统计</div>
+                    <div class="bar-chart" id="costChart"></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">🏷️ 未报销费用趋势</div>
+                    <div class="bar-chart" id="unpaidChart"></div>
+                </div>
+            </div>
+            
+            <div class="activity-list">
+                <div class="activity-header">
+                    <span>📋 最近动态</span>
+                </div>
+                <div id="recentActivity"></div>
+            </div>
+        </section>
+        
+        <!-- Vehicles Section -->
+        <section id="vehicles" class="section">
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="table-title">🚗 车辆列表</span>
+                    <div class="table-actions">
+                        <input type="text" class="search-input" placeholder="搜索车牌/品牌..." id="vehicleSearch" oninput="filterVehicles()">
+                        <button class="btn btn-primary" onclick="openVehicleModal()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            添加车辆
+                        </button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>车牌号</th>
+                                <th>品牌型号</th>
+                                <th>购置日期</th>
+                                <th>当前状态</th>
+                                <th>总里程(km)</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehiclesTable"></tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="vehiclesPagination"></div>
+            </div>
+        </section>
+        
+        <!-- Usage Section -->
+        <section id="usage" class="section">
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="table-title">📝 用车登记记录</span>
+                    <div class="table-actions">
+                        <input type="text" class="search-input" placeholder="搜索车牌/用车人..." id="usageSearch" oninput="filterUsage()">
+                        <select class="filter-select" id="usageFilter" onchange="filterUsage()">
+                            <option value="">全部状态</option>
+                            <option value="使用中">使用中</option>
+                            <option value="已完成">已完成</option>
+                        </select>
+                        <select class="filter-select" id="usageReimburseFilter" onchange="filterUsage()">
+                            <option value="">全部报销</option>
+                            <option value="未报销">未报销</option>
+                            <option value="已报销">已报销</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="openUsageModal()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            登记用车
+                        </button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>车牌号</th>
+                                <th>用车人 / 乘坐人</th>
+                                <th>用车时间</th>
+                                <th>目的地</th>
+                                <th>里程(km)</th>
+                                <th>费用(元)</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usageTable"></tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="usagePagination"></div>
+            </div>
+        </section>
+        
+        <!-- Maintenance Section -->
+        <section id="maintenance" class="section">
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="table-title">🔧 维修保养记录</span>
+                    <div class="table-actions">
+                        <input type="text" class="search-input" placeholder="搜索车牌/维修内容..." id="maintenanceSearch" oninput="filterMaintenance()">
+                        <select class="filter-select" id="maintenanceFilter" onchange="filterMaintenance()">
+                            <option value="">全部类型</option>
+                            <option value="保养">保养</option>
+                            <option value="维修">维修</option>
+                            <option value="年检">年检</option>
+                            <option value="保险">保险</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="openMaintenanceModal()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            登记维修
+                        </button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>车牌号</th>
+                                <th>维修类型</th>
+                                <th>维修日期</th>
+                                <th>维修内容</th>
+                                <th>费用(元)</th>
+                                <th>维修商</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="maintenanceTable"></tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="maintenancePagination"></div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Vehicle Modal -->
+    <div class="modal-overlay" id="vehicleModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="vehicleModalTitle">添加车辆</span>
+                <button class="modal-close" onclick="closeModal('vehicleModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="vehicleForm">
+                    <input type="hidden" id="vehicleId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">车牌号 *</label>
+                            <input type="text" class="form-control" id="plateNumber" required placeholder="如: 粤A12345">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">品牌型号</label>
+                            <input type="text" class="form-control" id="brandModel" placeholder="如: 丰田凯美瑞 2.0">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">购置日期</label>
+                            <input type="date" class="form-control" id="purchaseDate">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">总里程(km)</label>
+                            <input type="number" class="form-control" id="totalMileage" placeholder="当前总里程">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">车辆状态</label>
+                        <select class="form-control" id="vehicleStatus">
+                            <option value="可用">可用</option>
+                            <option value="使用中">使用中</option>
+                            <option value="维修中">维修中</option>
+                            <option value="报废">报废</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-control" id="vehicleRemark" placeholder="其他备注信息"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('vehicleModal')">取消</button>
+                <button class="btn btn-primary" onclick="saveVehicle()">保存</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Usage Modal -->
+    <div class="modal-overlay" id="usageModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="usageModalTitle">登记用车</span>
+                <button class="modal-close" onclick="closeModal('usageModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="usageForm">
+                    <input type="hidden" id="usageId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">车牌号 *</label>
+                            <select class="form-control" id="usageVehicle" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">用车人 *</label>
+                            <input type="text" class="form-control" id="usagePerson" required placeholder="输入或选择" list="personHistory">
+                            <datalist id="personHistory"></datalist>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">乘坐人</label>
+                        <input type="text" class="form-control" id="usagePassengers" placeholder="如：王总、李经理（多人用逗号分隔）">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">开始时间 *</label>
+                            <input type="datetime-local" class="form-control" id="usageStartTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">结束时间</label>
+                            <input type="datetime-local" class="form-control" id="usageEndTime">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">目的地 *</label>
+                        <input type="text" class="form-control" id="usageDestination" required placeholder="用车前往地点">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">用车事由 *</label>
+                        <textarea class="form-control" id="usageReason" required placeholder="用车原因说明"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">出发里程(km)</label>
+                            <input type="number" class="form-control" id="usageStartMileage" inputmode="numeric" placeholder="出发时里程">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">返回里程(km)</label>
+                            <input type="number" class="form-control" id="usageEndMileage" inputmode="numeric" placeholder="返回时里程">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">停车费(元)</label>
+                            <input type="number" class="form-control" id="usageParking" inputmode="decimal" placeholder="0" step="0.01" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">加油费(元)</label>
+                            <input type="number" class="form-control" id="usageFuel" inputmode="decimal" placeholder="0" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">高速费(元)</label>
+                            <input type="number" class="form-control" id="usageToll" inputmode="decimal" placeholder="0" step="0.01" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">洗车费(元)</label>
+                            <input type="number" class="form-control" id="usageCarWash" inputmode="decimal" placeholder="0" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">餐补(元)</label>
+                        <input type="number" class="form-control" id="usageMeal" inputmode="decimal" placeholder="0" step="0.01" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">状态</label>
+                        <select class="form-control" id="usageStatus">
+                            <option value="使用中">使用中</option>
+                            <option value="已完成">已完成</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">报销状态</label>
+                        <select class="form-control" id="usageReimburseStatus">
+                            <option value="未报销">未报销</option>
+                            <option value="已报销">已报销</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('usageModal')">取消</button>
+                <button class="btn btn-primary" onclick="saveUsage()">保存</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Maintenance Modal -->
+    <div class="modal-overlay" id="maintenanceModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="maintenanceModalTitle">登记维修保养</span>
+                <button class="modal-close" onclick="closeModal('maintenanceModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="maintenanceForm">
+                    <input type="hidden" id="maintenanceId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">车牌号 *</label>
+                            <select class="form-control" id="maintenanceVehicle" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">维修类型 *</label>
+                            <select class="form-control" id="maintenanceType" required>
+                                <option value="">请选择</option>
+                                <option value="保养">保养</option>
+                                <option value="维修">维修</option>
+                                <option value="年检">年检</option>
+                                <option value="保险">保险</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">维修日期 *</label>
+                            <input type="date" class="form-control" id="maintenanceDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">费用(元)</label>
+                            <input type="number" class="form-control" id="maintenanceCost" inputmode="decimal" placeholder="维修费用" step="0.01">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">维修内容 *</label>
+                        <textarea class="form-control" id="maintenanceContent" required placeholder="详细维修/保养项目"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">维修商</label>
+                        <input type="text" class="form-control" id="maintenanceVendor" placeholder="维修店铺/服务商">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-control" id="maintenanceRemark" placeholder="其他备注"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('maintenanceModal')">取消</button>
+                <button class="btn btn-primary" onclick="saveMaintenance()">保存</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // ==================== Data Store ====================
+        const DB_KEYS = {
+            vehicles: 'vehicle_management_vehicles',
+            usage: 'vehicle_management_usage',
+            maintenance: 'vehicle_management_maintenance'
+        };
+        
+        // Initialize with sample data
+        function initializeSampleData() {
+            if (!localStorage.getItem(DB_KEYS.vehicles)) {
+                const vehicles = [
+                    { id: 1, plateNumber: '粤A12345', brandModel: '丰田凯美瑞 2.0', purchaseDate: '2022-03-15', totalMileage: 45600, status: '可用', remark: '公务用车' },
+                    { id: 2, plateNumber: '粤B67890', brandModel: '本田雅阁 2.5', purchaseDate: '2021-08-20', totalMileage: 68200, status: '可用', remark: '商务接待' },
+                    { id: 3, plateNumber: '粤C11111', brandModel: '别克GL8', purchaseDate: '2023-01-10', totalMileage: 32000, status: '使用中', remark: '商务用车' },
+                    { id: 4, plateNumber: '粤D22222', brandModel: '大众帕萨特', purchaseDate: '2020-05-01', totalMileage: 89000, status: '维修中', remark: '需更换刹车片' }
+                ];
+                localStorage.setItem(DB_KEYS.vehicles, JSON.stringify(vehicles));
+            }
+            
+            if (!localStorage.getItem(DB_KEYS.usage)) {
+                const now = new Date();
+                const usage = [
+                    { id: 1, vehicleId: 1, plateNumber: '粤A12345', person: '张三', startTime: '2026-05-10T08:30', endTime: '2026-05-10T12:00', destination: '白云区工业园', reason: '拜访客户', startMileage: 45600, endMileage: 45680, status: '已完成' },
+                    { id: 2, vehicleId: 3, plateNumber: '粤C11111', person: '李四', startTime: '2026-05-12T09:00', endTime: '', destination: '深圳宝安机场', reason: '接机', startMileage: 32000, endMileage: '', status: '使用中' },
+                    { id: 3, vehicleId: 2, plateNumber: '粤B67890', person: '王五', startTime: '2026-05-08T14:00', endTime: '2026-05-08T18:30', destination: '佛山顺德区', reason: '供应商验货', startMileage: 68200, endMileage: 68320, status: '已完成' },
+                    { id: 4, vehicleId: 1, plateNumber: '粤A12345', person: '赵六', startTime: '2026-05-05T10:00', endTime: '2026-05-05T16:00', destination: '东莞长安镇', reason: '工厂巡查', startMileage: 45550, endMileage: 45600, status: '已完成' }
+                ];
+                localStorage.setItem(DB_KEYS.usage, JSON.stringify(usage));
+            }
+            
+            if (!localStorage.getItem(DB_KEYS.maintenance)) {
+                const maintenance = [
+                    { id: 1, vehicleId: 1, plateNumber: '粤A12345', type: '保养', date: '2026-04-15', content: '更换机油、机滤、空气滤清器', cost: 580, vendor: '丰田4S店', remark: '定期保养' },
+                    { id: 2, vehicleId: 4, plateNumber: '粤D22222', type: '维修', date: '2026-05-10', content: '更换刹车片、前轮刹车盘', cost: 1200, vendor: '大众专修', remark: '刹车异响维修' },
+                    { id: 3, vehicleId: 2, plateNumber: '粤B67890', type: '年检', date: '2026-03-20', content: '年度安全技术检验', cost: 300, vendor: '车管所', remark: '通过年检' },
+                    { id: 4, vehicleId: 3, plateNumber: '粤C11111', type: '保险', date: '2026-01-05', content: '交强险、商业险续保', cost: 4500, vendor: '平安保险', remark: '全保' }
+                ];
+                localStorage.setItem(DB_KEYS.maintenance, JSON.stringify(maintenance));
+            }
+        }
+        
+        // CRUD Operations
+        function getData(key) {
+            return JSON.parse(localStorage.getItem(key) || '[]');
+        }
+        
+        function setData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+        
+        // ==================== Navigation ====================
+        function switchSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+            
+            // Load section data
+            if (sectionId === 'dashboard') renderDashboard();
+            else if (sectionId === 'vehicles') renderVehicles();
+            else if (sectionId === 'usage') renderUsage();
+            else if (sectionId === 'maintenance') renderMaintenance();
+        }
+        
+        // ==================== Dashboard ====================
+        function renderDashboard() {
+            const vehicles = getData(DB_KEYS.vehicles);
+            const usage = getData(DB_KEYS.usage);
+            const maintenance = getData(DB_KEYS.maintenance);
+            
+            const totalVehicles = vehicles.length;
+            const availableVehicles = vehicles.filter(v => v.status === '可用').length;
+            const inUseVehicles = vehicles.filter(v => v.status === '使用中').length;
+            const underRepair = vehicles.filter(v => v.status === '维修中').length;
+            
+            const now = new Date();
+            const thisMonth = now.getMonth();
+            const thisYear = now.getFullYear();
+            
+            const thisMonthUsage = usage.filter(u => {
+                const d = new Date(u.startTime);
+                return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+            }).length;
+            
+            const thisMonthCost = maintenance
+                .filter(m => {
+                    const d = new Date(m.date);
+                    return d.getMonth() === thisMonth && d.getFullYear() === thisYear;
+                })
+                .reduce((sum, m) => sum + (parseFloat(m.cost) || 0), 0);
+            
+            // 计算未报销费用
+            const unpaidCost = usage
+                .filter(u => u.reimburseStatus !== '已报销')
+                .reduce((sum, u) => {
+                    return sum + (parseFloat(u.parking) || 0)
+                        + (parseFloat(u.fuel) || 0)
+                        + (parseFloat(u.toll) || 0)
+                        + (parseFloat(u.carWash) || 0)
+                        + (parseFloat(u.meal) || 0);
+                }, 0);
+            const unpaidCount = usage.filter(u => u.reimburseStatus !== '已报销').length;
+            
+            // Stats Grid
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${totalVehicles}</div>
+                    <div class="stat-label">车辆总数</div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-value">${availableVehicles}</div>
+                    <div class="stat-label">可用车辆</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-value">${inUseVehicles}</div>
+                    <div class="stat-label">使用中</div>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-value">${underRepair}</div>
+                    <div class="stat-label">维修中</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${thisMonthUsage}</div>
+                    <div class="stat-label">本月用车</div>
+                    <div class="stat-change up">↑ ${Math.round(thisMonthUsage / 12)}%</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">¥${thisMonthCost.toLocaleString()}</div>
+                    <div class="stat-label">本月维修费</div>
+                </div>
+                <div class="stat-card warning" onclick="switchSection('usage'); document.getElementById('usageReimburseFilter').value='未报销'; filterUsage();">
+                    <div class="stat-value">¥${unpaidCost.toLocaleString()}</div>
+                    <div class="stat-label">待报销费用</div>
+                    <div class="stat-change">${unpaidCount}笔未报</div>
+                </div>
+            `;
+            
+            // Usage Chart (Last 6 months)
+            const months = [];
+            const usageData = [];
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(thisYear, thisMonth - i, 1);
+                const monthStr = `${d.getMonth() + 1}月`;
+                const count = usage.filter(u => {
+                    const ud = new Date(u.startTime);
+                    return ud.getMonth() === d.getMonth() && ud.getFullYear() === d.getFullYear();
+                }).length;
+                months.push(monthStr);
+                usageData.push(count);
+            }
+            const maxUsage = Math.max(...usageData, 1);
+            
+            document.getElementById('usageChart').innerHTML = usageData.map((count, i) => `
+                <div class="bar-item">
+                    <span class="bar-label">${months[i]}</span>
+                    <div class="bar-track">
+                        <div class="bar-fill primary" style="width: ${(count/maxUsage)*100}%">${count}次</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Cost Chart (Last 6 months)
+            const costData = [];
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(thisYear, thisMonth - i, 1);
+                const cost = maintenance
+                    .filter(m => {
+                        const md = new Date(m.date);
+                        return md.getMonth() === d.getMonth() && md.getFullYear() === d.getFullYear();
+                    })
+                    .reduce((sum, m) => sum + (parseFloat(m.cost) || 0), 0);
+                costData.push(cost);
+            }
+            const maxCost = Math.max(...costData, 1);
+            
+            document.getElementById('costChart').innerHTML = costData.map((cost, i) => `
+                <div class="bar-item">
+                    <span class="bar-label">${months[i]}</span>
+                    <div class="bar-track">
+                        <div class="bar-fill danger" style="width: ${(cost/maxCost)*100}%">¥${cost.toLocaleString()}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Unpaid Cost Chart (Last 6 months)
+            const unpaidData = [];
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(thisYear, thisMonth - i, 1);
+                const nextMonth = new Date(thisYear, thisMonth - i + 1, 1);
+                const cost = usage
+                    .filter(u => {
+                        const ud = new Date(u.startTime);
+                        return ud >= d && ud < nextMonth && u.reimburseStatus !== '已报销';
+                    })
+                    .reduce((sum, u) => sum + (parseFloat(u.parking) || 0)
+                        + (parseFloat(u.fuel) || 0)
+                        + (parseFloat(u.toll) || 0)
+                        + (parseFloat(u.carWash) || 0)
+                        + (parseFloat(u.meal) || 0), 0);
+                unpaidData.push(cost);
+            }
+            const maxUnpaid = Math.max(...unpaidData, 1);
+            
+            document.getElementById('unpaidChart').innerHTML = unpaidData.map((cost, i) => `
+                <div class="bar-item">
+                    <span class="bar-label">${months[i]}</span>
+                    <div class="bar-track">
+                        <div class="bar-fill purple" style="width: ${(cost/maxUnpaid)*100}%">¥${cost.toLocaleString()}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Recent Activity
+            const recentUsage = usage.slice(-3).reverse().map(u => ({
+                type: 'use',
+                icon: '🚗',
+                title: `${u.plateNumber} - ${u.person}`,
+                meta: `${u.destination} | ${u.startTime.slice(0,10)}`
+            }));
+            
+            const recentMaintenance = maintenance.slice(-2).reverse().map(m => ({
+                type: 'repair',
+                icon: '🔧',
+                title: `${m.plateNumber} - ${m.type}`,
+                meta: `${m.content.slice(0,20)}... | ${m.date}`
+            }));
+            
+            const recentActivity = [...recentUsage, ...recentMaintenance]
+                .sort((a, b) => 0.5 - Math.random())
+                .slice(0, 5);
+            
+            document.getElementById('recentActivity').innerHTML = recentActivity.length ? recentActivity.map(a => `
+                <div class="activity-item">
+                    <div class="activity-icon ${a.type}">${a.icon}</div>
+                    <div class="activity-content">
+                        <div class="activity-title">${a.title}</div>
+                        <div class="activity-meta">${a.meta}</div>
+                    </div>
+                </div>
+            `).join('') : '<div class="empty-state"><p>暂无最近动态</p></div>';
+        }
+        
+        // ==================== Vehicles ====================
+        function renderVehicles(page = 1) {
+            const vehicles = getData(DB_KEYS.vehicles);
+            const search = document.getElementById('vehicleSearch')?.value?.toLowerCase() || '';
+            
+            const filtered = vehicles.filter(v => 
+                v.plateNumber.toLowerCase().includes(search) ||
+                v.brandModel.toLowerCase().includes(search)
+            );
+            
+            const pageSize = 10;
+            const totalPages = Math.ceil(filtered.length / pageSize);
+            const start = (page - 1) * pageSize;
+            const paged = filtered.slice(start, start + pageSize);
+            
+            document.getElementById('vehiclesTable').innerHTML = paged.length ? paged.map(v => `
+                <tr>
+                    <td><strong>${v.plateNumber}</strong></td>
+                    <td>${v.brandModel}</td>
+                    <td>${v.purchaseDate || '-'}</td>
+                    <td><span class="badge ${v.status === '可用' ? 'badge-success' : v.status === '使用中' ? 'badge-warning' : v.status === '维修中' ? 'badge-danger' : 'badge-info'}">${v.status}</span></td>
+                    <td>${v.totalMileage?.toLocaleString() || '-'}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="editVehicle(${v.id})">编辑</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteVehicle(${v.id})">删除</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('') : '<tr><td colspan="6"><div class="empty-state"><p>暂无车辆数据</p></div></td></tr>';
+            
+            window._vehiclePage = page;
+            renderPagination('vehiclesPagination', page, totalPages, 'renderVehicles', '_vehiclePage');
+        }
+        
+        function filterVehicles() {
+            renderVehicles();
+        }
+        
+        function openVehicleModal(id = null) {
+            document.getElementById('vehicleForm').reset();
+            document.getElementById('vehicleId').value = '';
+            document.getElementById('vehicleModalTitle').textContent = id ? '编辑车辆' : '添加车辆';
+            
+            if (id) {
+                const vehicles = getData(DB_KEYS.vehicles);
+                const v = vehicles.find(x => x.id === id);
+                if (v) {
+                    document.getElementById('vehicleId').value = v.id;
+                    document.getElementById('plateNumber').value = v.plateNumber;
+                    document.getElementById('brandModel').value = v.brandModel;
+                    document.getElementById('purchaseDate').value = v.purchaseDate;
+                    document.getElementById('totalMileage').value = v.totalMileage;
+                    document.getElementById('vehicleStatus').value = v.status;
+                    document.getElementById('vehicleRemark').value = v.remark;
+                }
+            }
+            
+            openModal('vehicleModal');
+        }
+        
+        function editVehicle(id) {
+            openVehicleModal(id);
+        }
+        
+        function saveVehicle() {
+            const id = document.getElementById('vehicleId').value;
+            const plateNumber = document.getElementById('plateNumber').value.trim();
+            
+            if (!plateNumber) {
+                showToast('请输入车牌号', 'error');
+                return;
+            }
+            
+            const vehicles = getData(DB_KEYS.vehicles);
+            
+            const data = {
+                id: id ? parseInt(id) : Date.now(),
+                plateNumber,
+                brandModel: document.getElementById('brandModel').value.trim(),
+                purchaseDate: document.getElementById('purchaseDate').value,
+                totalMileage: parseInt(document.getElementById('totalMileage').value) || 0,
+                status: document.getElementById('vehicleStatus').value,
+                remark: document.getElementById('vehicleRemark').value.trim()
+            };
+            
+            if (id) {
+                const idx = vehicles.findIndex(v => v.id === parseInt(id));
+                if (idx !== -1) vehicles[idx] = data;
+            } else {
+                vehicles.push(data);
+            }
+            
+            setData(DB_KEYS.vehicles, vehicles);
+            closeModal('vehicleModal');
+            renderVehicles();
+            showToast(id ? '车辆已更新' : '车辆已添加', 'success');
+        }
+        
+        function deleteVehicle(id) {
+            if (!confirm('确定要删除这辆车的信息吗？')) return;
+            
+            const vehicles = getData(DB_KEYS.vehicles);
+            const newVehicles = vehicles.filter(v => v.id !== id);
+            setData(DB_KEYS.vehicles, newVehicles);
+            showToast('车辆已删除', 'success');
+            // Refresh the table
+            if (typeof renderVehicles === 'function') {
+                renderVehicles(window._vehiclePage || 1);
+            }
+        }
+        
+        // ==================== Usage ====================
+        function populateVehicleSelects() {
+            const vehicles = getData(DB_KEYS.vehicles);
+            const availableVehicles = vehicles.filter(v => v.status !== '报废');
+            const options = availableVehicles.map(v => `<option value="${v.id}">${v.plateNumber} - ${v.brandModel}</option>`).join('');
+            
+            document.getElementById('usageVehicle').innerHTML = options;
+            document.getElementById('maintenanceVehicle').innerHTML = options;
+        }
+        
+        function renderUsage(page = 1) {
+            const usage = getData(DB_KEYS.usage);
+            const search = document.getElementById('usageSearch')?.value?.toLowerCase() || '';
+            const filter = document.getElementById('usageFilter')?.value || '';
+            const reimburseFilter = document.getElementById('usageReimburseFilter')?.value || '';
+            
+            const filtered = usage.filter(u => {
+                const matchSearch = u.plateNumber.toLowerCase().includes(search) ||
+                    u.person.toLowerCase().includes(search) ||
+                    u.destination.toLowerCase().includes(search);
+                const matchFilter = !filter || u.status === filter;
+                const matchReimburse = !reimburseFilter || (u.reimburseStatus || '未报销') === reimburseFilter;
+                return matchSearch && matchFilter && matchReimburse;
+            }).sort((a, b) => new Date(b.startTime) - new Date(a.startTime));
+            
+            const pageSize = 10;
+            const totalPages = Math.ceil(filtered.length / pageSize);
+            const start = (page - 1) * pageSize;
+            const paged = filtered.slice(start, start + pageSize);
+            
+            if (!paged.length) {
+                document.getElementById('usageTable').innerHTML = '<tr><td colspan="8"><div class="empty-state"><p>暂无用车记录</p></div></td></tr>';
+                window._usagePage = page;
+                renderPagination('usagePagination', page, totalPages, 'renderUsage', '_usagePage');
+                return;
+            }
+            
+            const rows = paged.map(u => {
+                const parking = parseFloat(u.parking) || 0;
+                const fuel = parseFloat(u.fuel) || 0;
+                const toll = parseFloat(u.toll) || 0;
+                const carWash = parseFloat(u.carWash) || 0;
+                const meal = parseFloat(u.meal) || 0;
+                const totalCost = parking + fuel + toll + carWash + meal;
+                const reimburseStatus = u.reimburseStatus || '未报销';
+                const isReimbursed = reimburseStatus === '已报销';
+                const distance = (u.endMileage && u.startMileage) ? (u.endMileage - u.startMileage) : null;
+                
+                // 费用明细标签
+                const costTags = [];
+                if (parking > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">停车</span>¥${parking.toFixed(2)}</span>`);
+                if (fuel > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">加油</span>¥${fuel.toFixed(2)}</span>`);
+                if (toll > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">高速</span>¥${toll.toFixed(2)}</span>`);
+                if (carWash > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">洗车</span>¥${carWash.toFixed(2)}</span>`);
+                if (meal > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">餐补</span>¥${meal.toFixed(2)}</span>`);
+                if (totalCost > 0) costTags.push(`<span class="cost-tag cost-total-tag">合计 ¥${totalCost.toFixed(2)}</span>`);
+                
+                const mainRow = `
+                    <tr class="usage-main-row" onclick="toggleUsageDetail(${u.id})">
+                        <td><strong>${u.plateNumber}</strong></td>
+                        <td>${u.person}${u.passengers ? `<br><span style="font-size:0.75rem;color:var(--gray-500)">乘：${u.passengers}</span>` : ''}</td>
+                        <td>${u.startTime.replace('T', ' ')}</td>
+                        <td>${u.destination}</td>
+                        <td>${distance !== null ? distance + 'km' : '-'}</td>
+                        <td>${totalCost > 0 ? '<span style="color:#1e40af;font-weight:600">¥' + totalCost.toFixed(2) + '</span>' : '<span style="color:var(--gray-400)">-</span>'}</td>
+                        <td><span class="badge ${u.status === '已完成' ? 'badge-success' : 'badge-warning'}">${u.status}</span>
+                            ${totalCost > 0 ? `<br><span class="badge ${isReimbursed ? 'badge-purple' : 'badge-gray'}" style="margin-top:3px">${reimburseStatus}</span>` : ''}
+                        </td>
+                        <td onclick="event.stopPropagation()">
+                            <div class="action-btns">
+                                ${totalCost > 0 && !isReimbursed
+                                    ? `<button type="button" class="btn btn-sm btn-reimburse" onclick="markReimbursed(${u.id})">报销✓</button>`
+                                    : ''
+                                }
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="editUsage(${u.id})">编辑</button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteUsage(${u.id})">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                
+                const detailRow = `
+                    <tr class="usage-detail-row" id="detail-${u.id}">
+                        <td colspan="8">
+                            <div class="usage-detail-inner">
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">出发里程</span>
+                                        <span class="detail-value">${u.startMileage ? u.startMileage.toLocaleString() + ' km' : '未填写'}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">返回里程</span>
+                                        <span class="detail-value">${u.endMileage ? u.endMileage.toLocaleString() + ' km' : '未填写'}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">行驶里程</span>
+                                        <span class="detail-value highlight">${distance !== null ? distance + ' km' : '未完成'}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">结束时间</span>
+                                        <span class="detail-value">${u.endTime ? u.endTime.replace('T', ' ') : '使用中'}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">乘坐人</span>
+                                        <span class="detail-value">${u.passengers || '<span style="color:var(--gray-400)">未填写</span>'}</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">用车事由</span>
+                                        <span class="detail-value">${u.reason || '-'}</span>
+                                    </div>
+                                </div>
+                                ${totalCost > 0 ? `
+                                <hr class="detail-divider">
+                                <div class="detail-item" style="margin-bottom:0.5rem">
+                                    <span class="detail-label">费用明细</span>
+                                </div>
+                                <div class="cost-breakdown">${costTags.join('')}</div>
+                                ` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                
+                return mainRow + detailRow;
+            }).join('');
+            
+            document.getElementById('usageTable').innerHTML = rows;
+            window._usagePage = page;
+            renderPagination('usagePagination', page, totalPages, 'renderUsage', '_usagePage');
+        }
+        
+        function toggleUsageDetail(id) {
+            const mainRow = document.querySelector(`.usage-main-row[onclick="toggleUsageDetail(${id})"]`);
+            const detailRow = document.getElementById(`detail-${id}`);
+            if (!mainRow || !detailRow) return;
+            const isExpanded = mainRow.classList.contains('expanded');
+            // 折叠所有
+            document.querySelectorAll('.usage-main-row.expanded').forEach(r => r.classList.remove('expanded'));
+            document.querySelectorAll('.usage-detail-row.show').forEach(r => r.classList.remove('show'));
+            // 如果之前是折叠的，则展开
+            if (!isExpanded) {
+                mainRow.classList.add('expanded');
+                detailRow.classList.add('show');
+            }
+        }
+        
+        function filterUsage() {
+            renderUsage();
+        }
+        
+        function openUsageModal(id = null) {
+            document.getElementById('usageForm').reset();
+            document.getElementById('usageId').value = '';
+            document.getElementById('usageModalTitle').textContent = id ? '编辑用车记录' : '登记用车';
+            populateVehicleSelects();
+            loadPersonHistory();
+            
+            if (id) {
+                const usage = getData(DB_KEYS.usage);
+                const u = usage.find(x => x.id === id);
+                if (u) {
+                    document.getElementById('usageId').value = u.id;
+                    document.getElementById('usageVehicle').value = u.vehicleId;
+                    document.getElementById('usagePerson').value = u.person;
+                    document.getElementById('usageStartTime').value = u.startTime;
+                    document.getElementById('usageEndTime').value = u.endTime;
+                    document.getElementById('usageDestination').value = u.destination;
+                    document.getElementById('usageReason').value = u.reason;
+                    document.getElementById('usageStartMileage').value = u.startMileage;
+                    document.getElementById('usageEndMileage').value = u.endMileage;
+                    document.getElementById('usagePassengers').value = u.passengers || '';
+                    document.getElementById('usageParking').value = u.parking || '';
+                    document.getElementById('usageFuel').value = u.fuel || '';
+                    document.getElementById('usageToll').value = u.toll || '';
+                    document.getElementById('usageCarWash').value = u.carWash || '';
+                    document.getElementById('usageMeal').value = u.meal || '';
+                    document.getElementById('usageStatus').value = u.status;
+                    document.getElementById('usageReimburseStatus').value = u.reimburseStatus || '未报销';
+                }
+            }
+            
+            openModal('usageModal');
+        }
+        
+        function loadPersonHistory() {
+            const usage = getData(DB_KEYS.usage);
+            const persons = [...new Set(usage.map(u => u.person).filter(p => p))];
+            const datalist = document.getElementById('personHistory');
+            datalist.innerHTML = persons.map(p => `<option value="${p}">`).join('');
+        }
+        
+        function editUsage(id) {
+            openUsageModal(id);
+        }
+        
+        function saveUsage() {
+            const id = document.getElementById('usageId').value;
+            const vehicleId = parseInt(document.getElementById('usageVehicle').value);
+            const person = document.getElementById('usagePerson').value.trim();
+            const startTime = document.getElementById('usageStartTime').value;
+            
+            if (!vehicleId || !person || !startTime) {
+                showToast('请填写必填项', 'error');
+                return;
+            }
+            
+            const vehicles = getData(DB_KEYS.vehicles);
+            const vehicle = vehicles.find(v => v.id === vehicleId);
+            
+            const usage = getData(DB_KEYS.usage);
+            
+            const data = {
+                id: id ? parseInt(id) : Date.now(),
+                vehicleId,
+                plateNumber: vehicle?.plateNumber || '',
+                person,
+                startTime,
+                endTime: document.getElementById('usageEndTime').value,
+                destination: document.getElementById('usageDestination').value.trim(),
+                reason: document.getElementById('usageReason').value.trim(),
+                startMileage: parseInt(document.getElementById('usageStartMileage').value) || 0,
+                endMileage: parseInt(document.getElementById('usageEndMileage').value) || 0,
+                passengers: document.getElementById('usagePassengers').value.trim(),
+                parking: parseFloat(document.getElementById('usageParking').value) || 0,
+                fuel: parseFloat(document.getElementById('usageFuel').value) || 0,
+                toll: parseFloat(document.getElementById('usageToll').value) || 0,
+                carWash: parseFloat(document.getElementById('usageCarWash').value) || 0,
+                meal: parseFloat(document.getElementById('usageMeal').value) || 0,
+                status: document.getElementById('usageStatus').value,
+                reimburseStatus: document.getElementById('usageReimburseStatus').value
+            };
+            
+            if (id) {
+                const idx = usage.findIndex(u => u.id === parseInt(id));
+                if (idx !== -1) usage[idx] = data;
+            } else {
+                usage.push(data);
+            }
+            
+            // Update vehicle status
+            const status = data.status === '已完成' ? '可用' : '使用中';
+            const vehicleIdx = vehicles.findIndex(v => v.id === vehicleId);
+            if (vehicleIdx !== -1) {
+                vehicles[vehicleIdx].status = status;
+                // Update mileage
+                if (data.endMileage > vehicles[vehicleIdx].totalMileage) {
+                    vehicles[vehicleIdx].totalMileage = data.endMileage;
+                }
+                setData(DB_KEYS.vehicles, vehicles);
+            }
+            
+            setData(DB_KEYS.usage, usage);
+            closeModal('usageModal');
+            renderUsage();
+            showToast(id ? '记录已更新' : '用车已登记', 'success');
+        }
+        
+        function deleteUsage(id) {
+            if (!confirm('确定要删除这条记录吗？')) return;
+            
+            const usage = getData(DB_KEYS.usage);
+            const newUsage = usage.filter(u => u.id !== id);
+            setData(DB_KEYS.usage, newUsage);
+            showToast('记录已删除', 'success');
+            if (typeof renderUsage === 'function') {
+                renderUsage(window._usagePage || 1);
+            }
+        }
+        
+        function markReimbursed(id) {
+            const usage = getData(DB_KEYS.usage);
+            const idx = usage.findIndex(u => u.id === id);
+            if (idx !== -1) {
+                usage[idx].reimburseStatus = '已报销';
+                setData(DB_KEYS.usage, usage);
+                showToast('已标记为已报销 ✓', 'success');
+                renderUsage(window._usagePage || 1);
+            }
+        }
+        
+        // ==================== Maintenance ====================
+        function renderMaintenance(page = 1) {
+            const maintenance = getData(DB_KEYS.maintenance);
+            const search = document.getElementById('maintenanceSearch')?.value?.toLowerCase() || '';
+            const filter = document.getElementById('maintenanceFilter')?.value || '';
+            
+            const filtered = maintenance.filter(m => {
+                const matchSearch = m.plateNumber.toLowerCase().includes(search) ||
+                    m.content.toLowerCase().includes(search);
+                const matchFilter = !filter || m.type === filter;
+                return matchSearch && matchFilter;
+            }).sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            const pageSize = 10;
+            const totalPages = Math.ceil(filtered.length / pageSize);
+            const start = (page - 1) * pageSize;
+            const paged = filtered.slice(start, start + pageSize);
+            
+            document.getElementById('maintenanceTable').innerHTML = paged.length ? paged.map(m => `
+                <tr>
+                    <td><strong>${m.plateNumber}</strong></td>
+                    <td><span class="badge ${m.type === '保养' ? 'badge-success' : m.type === '维修' ? 'badge-danger' : 'badge-info'}">${m.type}</span></td>
+                    <td>${m.date}</td>
+                    <td>${m.content}</td>
+                    <td>¥${parseFloat(m.cost || 0).toLocaleString()}</td>
+                    <td>${m.vendor || '-'}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="editMaintenance(${m.id})">编辑</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteMaintenance(${m.id})">删除</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('') : '<tr><td colspan="7"><div class="empty-state"><p>暂无维修记录</p></div></td></tr>';
+            
+            window._maintenancePage = page;
+            renderPagination('maintenancePagination', page, totalPages, 'renderMaintenance', '_maintenancePage');
+        }
+        
+        function filterMaintenance() {
+            renderMaintenance();
+        }
+        
+        function openMaintenanceModal(id = null) {
+            document.getElementById('maintenanceForm').reset();
+            document.getElementById('maintenanceId').value = '';
+            document.getElementById('maintenanceModalTitle').textContent = id ? '编辑维修记录' : '登记维修保养';
+            populateVehicleSelects();
+            
+            if (id) {
+                const maintenance = getData(DB_KEYS.maintenance);
+                const m = maintenance.find(x => x.id === id);
+                if (m) {
+                    document.getElementById('maintenanceId').value = m.id;
+                    document.getElementById('maintenanceVehicle').value = m.vehicleId;
+                    document.getElementById('maintenanceType').value = m.type;
+                    document.getElementById('maintenanceDate').value = m.date;
+                    document.getElementById('maintenanceCost').value = m.cost;
+                    document.getElementById('maintenanceContent').value = m.content;
+                    document.getElementById('maintenanceVendor').value = m.vendor;
+                    document.getElementById('maintenanceRemark').value = m.remark;
+                }
+            }
+            
+            openModal('maintenanceModal');
+        }
+        
+        function editMaintenance(id) {
+            openMaintenanceModal(id);
+        }
+        
+        function saveMaintenance() {
+            const id = document.getElementById('maintenanceId').value;
+            const vehicleId = parseInt(document.getElementById('maintenanceVehicle').value);
+            const type = document.getElementById('maintenanceType').value;
+            const date = document.getElementById('maintenanceDate').value;
+            const content = document.getElementById('maintenanceContent').value.trim();
+            
+            if (!vehicleId || !type || !date || !content) {
+                showToast('请填写必填项', 'error');
+                return;
+            }
+            
+            const vehicles = getData(DB_KEYS.vehicles);
+            const vehicle = vehicles.find(v => v.id === vehicleId);
+            
+            const maintenance = getData(DB_KEYS.maintenance);
+            
+            const data = {
+                id: id ? parseInt(id) : Date.now(),
+                vehicleId,
+                plateNumber: vehicle?.plateNumber || '',
+                type,
+                date,
+                cost: parseFloat(document.getElementById('maintenanceCost').value) || 0,
+                content,
+                vendor: document.getElementById('maintenanceVendor').value.trim(),
+                remark: document.getElementById('maintenanceRemark').value.trim()
+            };
+            
+            if (id) {
+                const idx = maintenance.findIndex(m => m.id === parseInt(id));
+                if (idx !== -1) maintenance[idx] = data;
+            } else {
+                maintenance.push(data);
+            }
+            
+            // Update vehicle status (if repair, mark as under repair; if completed, mark as available)
+            if (type === '维修') {
+                const vehicleIdx = vehicles.findIndex(v => v.id === vehicleId);
+                if (vehicleIdx !== -1) {
+                    vehicles[vehicleIdx].status = '维修中';
+                    setData(DB_KEYS.vehicles, vehicles);
+                }
+            }
+            
+            setData(DB_KEYS.maintenance, maintenance);
+            closeModal('maintenanceModal');
+            renderMaintenance();
+            showToast(id ? '记录已更新' : '维修已登记', 'success');
+        }
+        
+        function deleteMaintenance(id) {
+            if (!confirm('确定要删除这条记录吗？')) return;
+            
+            const maintenance = getData(DB_KEYS.maintenance);
+            const newMaintenance = maintenance.filter(m => m.id !== id);
+            setData(DB_KEYS.maintenance, newMaintenance);
+            showToast('记录已删除', 'success');
+            if (typeof renderMaintenance === 'function') {
+                renderMaintenance(window._maintenancePage || 1);
+            }
+        }
+        
+        // ==================== Modal & UI Helpers ====================
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+        
+        function renderPagination(containerId, current, total, callbackName, pageVar) {
+            const container = document.getElementById(containerId);
+            if (total <= 1) {
+                container.innerHTML = '';
+                return;
+            }
+            
+            let html = '';
+            
+            if (current > 1) {
+                html += `<button class="page-btn" data-page="${current - 1}" data-callback="${callbackName}">上一页</button>`;
+            }
+            
+            for (let i = 1; i <= total; i++) {
+                if (i === 1 || i === total || (i >= current - 1 && i <= current + 1)) {
+                    html += `<button class="page-btn ${i === current ? 'active' : ''}" data-page="${i}" data-callback="${callbackName}">${i}</button>`;
+                } else if (i === current - 2 || i === current + 2) {
+                    html += `<span class="page-info">...</span>`;
+                }
+            }
+            
+            if (current < total) {
+                html += `<button class="page-btn" data-page="${current + 1}" data-callback="${callbackName}">下一页</button>`;
+            }
+            
+            container.innerHTML = html;
+            // Bind click events
+            container.querySelectorAll('button[data-page]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const page = parseInt(btn.dataset.page);
+                    window[pageVar] = page;
+                    window[btn.dataset.callback](page);
+                });
+            });
+        }
+        
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <span>${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        function toggleMenu() {
+            document.querySelector('.nav-content').classList.toggle('show');
+        }
+        
+        // ==================== Initialize ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSampleData();
+            renderDashboard();
+        });
+    </script>
+</body>
+</html>
