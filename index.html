@@ -1187,13 +1187,10 @@
                 </svg>
                 <span>公司车辆管理系统</span>
             </h1>
-            <button class="menu-btn" onclick="toggleMenu()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </button>
+            <div style="display:flex;gap:0.5rem;">
+                <button onclick="exportData()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:0.5rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;">💾 导出</button>
+                <button onclick="importData()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:0.5rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;">📂 导入</button>
+            </div>
         </div>
     </header>
     
@@ -1631,6 +1628,50 @@
         
         function setData(key, data) {
             localStorage.setItem(key, JSON.stringify(data));
+        }
+        
+        // ==================== 数据备份 ====================
+        function exportData() {
+            const data = {
+                vehicles: getData(DB_KEYS.vehicles),
+                usage: getData(DB_KEYS.usage),
+                maintenance: getData(DB_KEYS.maintenance),
+                exportTime: new Date().toISOString()
+            };
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `车辆管理备份_${new Date().toLocaleDateString('zh-CN').replace(/\//g, '-')}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('数据已导出', 'success');
+        }
+        
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        if (data.vehicles) setData(DB_KEYS.vehicles, data.vehicles);
+                        if (data.usage) setData(DB_KEYS.usage, data.usage);
+                        if (data.maintenance) setData(DB_KEYS.maintenance, data.maintenance);
+                        showToast('数据已导入，请刷新页面', 'success');
+                        setTimeout(() => location.reload(), 1500);
+                    } catch (err) {
+                        showToast('导入失败：文件格式错误', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
         }
         
         // ==================== Navigation ====================
