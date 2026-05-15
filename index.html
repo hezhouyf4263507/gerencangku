@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>公司车辆管理系统</title>
+    <title>鍏徃杞﹁締绠＄悊绯荤粺</title>
     <style>
         * {
             margin: 0;
@@ -445,7 +445,7 @@
             background: #eff6ff !important;
         }
         .usage-main-row td:first-child::before {
-            content: '▶';
+            content: '鈻?;
             display: inline-block;
             margin-right: 6px;
             font-size: 0.65rem;
@@ -698,7 +698,7 @@
             /* Header */
             .header h1 span { display: none; }
             
-            /* Navigation - 固定底部 */
+            /* Navigation - 鍥哄畾搴曢儴 */
             .nav {
                 position: fixed;
                 bottom: 0;
@@ -731,13 +731,13 @@
                 color: white;
             }
             
-            /* Main content - 底部留导航空间 */
+            /* Main content - 搴曢儴鐣欏鑸┖闂?*/
             .main {
                 padding: 0.75rem;
                 padding-bottom: 80px;
             }
             
-            /* Modal - 从底部弹出 */
+            /* Modal - 浠庡簳閮ㄥ脊鍑?*/
             .modal-overlay {
                 align-items: flex-end;
                 padding: 0;
@@ -789,7 +789,7 @@
                 border-radius: 10px;
             }
             
-            /* Form - 更大的控件 */
+            /* Form - 鏇村ぇ鐨勬帶浠?*/
             .form-group { margin-bottom: 1rem; }
             .form-label {
                 font-size: 0.85rem;
@@ -798,7 +798,7 @@
             }
             .form-control {
                 padding: 0.75rem;
-                font-size: 16px; /* 防止iOS缩放 */
+                font-size: 16px; /* 闃叉iOS缂╂斁 */
                 border-radius: 10px;
                 min-height: 48px;
             }
@@ -807,7 +807,7 @@
                 gap: 0;
             }
             
-            /* Table - 横向滚动 */
+            /* Table - 妯悜婊氬姩 */
             .table-container {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
@@ -825,7 +825,7 @@
             }
             th { font-size: 0.72rem; }
             
-            /* 操作按钮 - 放大 */
+            /* 鎿嶄綔鎸夐挳 - 鏀惧ぇ */
             .action-btns {
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -844,7 +844,7 @@
                 min-height: 32px;
             }
             
-            /* Stats - 2列网格 */
+            /* Stats - 2鍒楃綉鏍?*/
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
@@ -855,7 +855,7 @@
             .stat-value { font-size: 1.25rem; }
             .stat-label { font-size: 0.72rem; }
             
-            /* 展开详情 - 手机友好 */
+            /* 灞曞紑璇︽儏 - 鎵嬫満鍙嬪ソ */
             .usage-detail-inner { padding: 0.75rem; }
             .detail-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -869,7 +869,7 @@
                 font-size: 0.75rem;
             }
             
-            /* 搜索和筛选 - 堆叠 */
+            /* 鎼滅储鍜岀瓫閫?- 鍫嗗彔 */
             .table-header {
                 flex-direction: column;
                 gap: 0.5rem;
@@ -884,7 +884,7 @@
                 gap: 0.5rem;
             }
             
-            /* Toast - 底部居中 */
+            /* Toast - 搴曢儴灞呬腑 */
             .toast-container {
                 bottom: 90px;
                 right: 1rem;
@@ -895,7 +895,7 @@
                 width: 100%;
             }
             
-            /* 列表主行 - 增加点击区域 */
+            /* 鍒楄〃涓昏 - 澧炲姞鐐瑰嚮鍖哄煙 */
             .usage-main-row td:first-child::before {
                 font-size: 0.75rem;
             }
@@ -1003,176 +1003,6 @@
             color: var(--gray-500);
             margin: 0 0.5rem;
         }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1rem;
-            }
-            
-            .main {
-                padding: 0.75rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-            }
-            
-            .stat-card {
-                padding: 0.75rem;
-            }
-            
-            .stat-value {
-                font-size: 1.5rem;
-            }
-            
-            .stat-label {
-                font-size: 0.75rem;
-            }
-            
-            .charts-grid {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-            
-            .chart-card {
-                padding: 0.75rem;
-            }
-            
-            .chart-title {
-                font-size: 0.9rem;
-                margin-bottom: 0.75rem;
-            }
-            
-            .bar-chart {
-                gap: 0.5rem;
-            }
-            
-            .bar-label {
-                width: 50px;
-                font-size: 0.75rem;
-            }
-            
-            .bar-track {
-                height: 18px;
-            }
-            
-            .bar-fill {
-                font-size: 0.65rem;
-                padding-left: 0.5rem;
-            }
-            
-            .nav-content {
-                padding: 0.5rem;
-            }
-            
-            .nav-btn {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.8rem;
-            }
-            
-            .table-container {
-                margin: 0 -0.75rem;
-                border-radius: 0;
-            }
-            
-            .data-table {
-                font-size: 0.8rem;
-            }
-            
-            .data-table th,
-            .data-table td {
-                padding: 0.5rem 0.4rem;
-            }
-            
-            .filter-bar {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .filter-group {
-                width: 100%;
-            }
-            
-            .filter-input,
-            .filter-select {
-                width: 100%;
-            }
-            
-            .btn {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.85rem;
-            }
-            
-            .modal-content {
-                margin: 0.5rem;
-                max-height: 90vh;
-            }
-            
-            .modal-body {
-                padding: 1rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-group {
-                margin-bottom: 0.75rem;
-            }
-            
-            .form-label {
-                font-size: 0.85rem;
-                margin-bottom: 0.25rem;
-            }
-            
-            .form-input,
-            .form-select,
-            .form-textarea {
-                padding: 0.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .form-textarea {
-                min-height: 60px;
-            }
-            
-            .dashboard-grid {
-                gap: 0.5rem;
-            }
-            
-            .activity-item {
-                padding: 0.75rem;
-            }
-            
-            .activity-content {
-                font-size: 0.85rem;
-            }
-            
-            .activity-time {
-                font-size: 0.75rem;
-            }
-            
-            .pagination {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .page-btn {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.8rem;
-            }
-            
-            .tabs {
-                overflow-x: auto;
-            }
-            
-            .tab {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.85rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1185,12 +1015,15 @@
                     <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
                     <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"/>
                 </svg>
-                <span>公司车辆管理系统</span>
+                <span>鍏徃杞﹁締绠＄悊绯荤粺</span>
             </h1>
-            <div style="display:flex;gap:0.5rem;">
-                <button onclick="exportData()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:0.5rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;">💾 导出</button>
-                <button onclick="importData()" style="background:rgba(255,255,255,0.2);border:none;color:white;padding:0.5rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;">📂 导入</button>
-            </div>
+            <button class="menu-btn" onclick="toggleMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
     </header>
     
@@ -1198,16 +1031,16 @@
     <nav class="nav">
         <div class="nav-content">
             <button class="nav-btn active" data-section="dashboard" onclick="switchSection('dashboard')">
-                📊 数据看板
+                馃搳 鏁版嵁鐪嬫澘
             </button>
             <button class="nav-btn" data-section="usage" onclick="switchSection('usage')">
-                📝 用车登记
+                馃摑 鐢ㄨ溅鐧昏
             </button>
             <button class="nav-btn" data-section="vehicles" onclick="switchSection('vehicles')">
-                🚗 车辆管理
+                馃殫 杞﹁締绠＄悊
             </button>
             <button class="nav-btn" data-section="maintenance" onclick="switchSection('maintenance')">
-                🔧 维修保养
+                馃敡 缁翠慨淇濆吇
             </button>
         </div>
     </nav>
@@ -1220,22 +1053,22 @@
             
             <div class="charts-grid">
                 <div class="chart-card">
-                    <div class="chart-title">📈 月度用车趋势</div>
+                    <div class="chart-title">馃搱 鏈堝害鐢ㄨ溅瓒嬪娍</div>
                     <div class="bar-chart" id="usageChart"></div>
                 </div>
                 <div class="chart-card">
-                    <div class="chart-title">💰 维修费用统计</div>
+                    <div class="chart-title">馃挵 缁翠慨璐圭敤缁熻</div>
                     <div class="bar-chart" id="costChart"></div>
                 </div>
                 <div class="chart-card">
-                    <div class="chart-title">🏷️ 未报销费用趋势</div>
+                    <div class="chart-title">馃彿锔?鏈姤閿€璐圭敤瓒嬪娍</div>
                     <div class="bar-chart" id="unpaidChart"></div>
                 </div>
             </div>
             
             <div class="activity-list">
                 <div class="activity-header">
-                    <span>📋 最近动态</span>
+                    <span>馃搵 鏈€杩戝姩鎬?/span>
                 </div>
                 <div id="recentActivity"></div>
             </div>
@@ -1245,15 +1078,15 @@
         <section id="vehicles" class="section">
             <div class="table-container">
                 <div class="table-header">
-                    <span class="table-title">🚗 车辆列表</span>
+                    <span class="table-title">馃殫 杞﹁締鍒楄〃</span>
                     <div class="table-actions">
-                        <input type="text" class="search-input" placeholder="搜索车牌/品牌..." id="vehicleSearch" oninput="filterVehicles()">
+                        <input type="text" class="search-input" placeholder="鎼滅储杞︾墝/鍝佺墝..." id="vehicleSearch" oninput="filterVehicles()">
                         <button class="btn btn-primary" onclick="openVehicleModal()">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
-                            添加车辆
+                            娣诲姞杞﹁締
                         </button>
                     </div>
                 </div>
@@ -1261,12 +1094,12 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>车牌号</th>
-                                <th>品牌型号</th>
-                                <th>购置日期</th>
-                                <th>当前状态</th>
-                                <th>总里程(km)</th>
-                                <th>操作</th>
+                                <th>杞︾墝鍙?/th>
+                                <th>鍝佺墝鍨嬪彿</th>
+                                <th>璐疆鏃ユ湡</th>
+                                <th>褰撳墠鐘舵€?/th>
+                                <th>鎬婚噷绋?km)</th>
+                                <th>鎿嶄綔</th>
                             </tr>
                         </thead>
                         <tbody id="vehiclesTable"></tbody>
@@ -1280,25 +1113,25 @@
         <section id="usage" class="section">
             <div class="table-container">
                 <div class="table-header">
-                    <span class="table-title">📝 用车登记记录</span>
+                    <span class="table-title">馃摑 鐢ㄨ溅鐧昏璁板綍</span>
                     <div class="table-actions">
-                        <input type="text" class="search-input" placeholder="搜索车牌/用车人..." id="usageSearch" oninput="filterUsage()">
+                        <input type="text" class="search-input" placeholder="鎼滅储杞︾墝/鐢ㄨ溅浜?.." id="usageSearch" oninput="filterUsage()">
                         <select class="filter-select" id="usageFilter" onchange="filterUsage()">
-                            <option value="">全部状态</option>
-                            <option value="使用中">使用中</option>
-                            <option value="已完成">已完成</option>
+                            <option value="">鍏ㄩ儴鐘舵€?/option>
+                            <option value="浣跨敤涓?>浣跨敤涓?/option>
+                            <option value="宸插畬鎴?>宸插畬鎴?/option>
                         </select>
                         <select class="filter-select" id="usageReimburseFilter" onchange="filterUsage()">
-                            <option value="">全部报销</option>
-                            <option value="未报销">未报销</option>
-                            <option value="已报销">已报销</option>
+                            <option value="">鍏ㄩ儴鎶ラ攢</option>
+                            <option value="鏈姤閿€">鏈姤閿€</option>
+                            <option value="宸叉姤閿€">宸叉姤閿€</option>
                         </select>
                         <button class="btn btn-primary" onclick="openUsageModal()">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
-                            登记用车
+                            鐧昏鐢ㄨ溅
                         </button>
                     </div>
                 </div>
@@ -1306,14 +1139,14 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>车牌号</th>
-                                <th>用车人 / 乘坐人</th>
-                                <th>用车时间</th>
-                                <th>目的地</th>
-                                <th>里程(km)</th>
-                                <th>费用(元)</th>
-                                <th>状态</th>
-                                <th>操作</th>
+                                <th>杞︾墝鍙?/th>
+                                <th>鐢ㄨ溅浜?/ 涔樺潗浜?/th>
+                                <th>鐢ㄨ溅鏃堕棿</th>
+                                <th>鐩殑鍦?/th>
+                                <th>閲岀▼(km)</th>
+                                <th>璐圭敤(鍏?</th>
+                                <th>鐘舵€?/th>
+                                <th>鎿嶄綔</th>
                             </tr>
                         </thead>
                         <tbody id="usageTable"></tbody>
@@ -1327,22 +1160,22 @@
         <section id="maintenance" class="section">
             <div class="table-container">
                 <div class="table-header">
-                    <span class="table-title">🔧 维修保养记录</span>
+                    <span class="table-title">馃敡 缁翠慨淇濆吇璁板綍</span>
                     <div class="table-actions">
-                        <input type="text" class="search-input" placeholder="搜索车牌/维修内容..." id="maintenanceSearch" oninput="filterMaintenance()">
+                        <input type="text" class="search-input" placeholder="鎼滅储杞︾墝/缁翠慨鍐呭..." id="maintenanceSearch" oninput="filterMaintenance()">
                         <select class="filter-select" id="maintenanceFilter" onchange="filterMaintenance()">
-                            <option value="">全部类型</option>
-                            <option value="保养">保养</option>
-                            <option value="维修">维修</option>
-                            <option value="年检">年检</option>
-                            <option value="保险">保险</option>
+                            <option value="">鍏ㄩ儴绫诲瀷</option>
+                            <option value="淇濆吇">淇濆吇</option>
+                            <option value="缁翠慨">缁翠慨</option>
+                            <option value="骞存">骞存</option>
+                            <option value="淇濋櫓">淇濋櫓</option>
                         </select>
                         <button class="btn btn-primary" onclick="openMaintenanceModal()">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
-                            登记维修
+                            鐧昏缁翠慨
                         </button>
                     </div>
                 </div>
@@ -1350,13 +1183,13 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>车牌号</th>
-                                <th>维修类型</th>
-                                <th>维修日期</th>
-                                <th>维修内容</th>
-                                <th>费用(元)</th>
-                                <th>维修商</th>
-                                <th>操作</th>
+                                <th>杞︾墝鍙?/th>
+                                <th>缁翠慨绫诲瀷</th>
+                                <th>缁翠慨鏃ユ湡</th>
+                                <th>缁翠慨鍐呭</th>
+                                <th>璐圭敤(鍏?</th>
+                                <th>缁翠慨鍟?/th>
+                                <th>鎿嶄綔</th>
                             </tr>
                         </thead>
                         <tbody id="maintenanceTable"></tbody>
@@ -1371,7 +1204,7 @@
     <div class="modal-overlay" id="vehicleModal">
         <div class="modal">
             <div class="modal-header">
-                <span class="modal-title" id="vehicleModalTitle">添加车辆</span>
+                <span class="modal-title" id="vehicleModalTitle">娣诲姞杞﹁締</span>
                 <button class="modal-close" onclick="closeModal('vehicleModal')">&times;</button>
             </div>
             <div class="modal-body">
@@ -1379,42 +1212,42 @@
                     <input type="hidden" id="vehicleId">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">车牌号 *</label>
-                            <input type="text" class="form-control" id="plateNumber" required placeholder="如: 粤A12345">
+                            <label class="form-label">杞︾墝鍙?*</label>
+                            <input type="text" class="form-control" id="plateNumber" required placeholder="濡? 绮12345">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">品牌型号</label>
-                            <input type="text" class="form-control" id="brandModel" placeholder="如: 丰田凯美瑞 2.0">
+                            <label class="form-label">鍝佺墝鍨嬪彿</label>
+                            <input type="text" class="form-control" id="brandModel" placeholder="濡? 涓扮敯鍑編鐟?2.0">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">购置日期</label>
+                            <label class="form-label">璐疆鏃ユ湡</label>
                             <input type="date" class="form-control" id="purchaseDate">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">总里程(km)</label>
-                            <input type="number" class="form-control" id="totalMileage" placeholder="当前总里程">
+                            <label class="form-label">鎬婚噷绋?km)</label>
+                            <input type="number" class="form-control" id="totalMileage" placeholder="褰撳墠鎬婚噷绋?>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">车辆状态</label>
+                        <label class="form-label">杞﹁締鐘舵€?/label>
                         <select class="form-control" id="vehicleStatus">
-                            <option value="可用">可用</option>
-                            <option value="使用中">使用中</option>
-                            <option value="维修中">维修中</option>
-                            <option value="报废">报废</option>
+                            <option value="鍙敤">鍙敤</option>
+                            <option value="浣跨敤涓?>浣跨敤涓?/option>
+                            <option value="缁翠慨涓?>缁翠慨涓?/option>
+                            <option value="鎶ュ簾">鎶ュ簾</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">备注</label>
-                        <textarea class="form-control" id="vehicleRemark" placeholder="其他备注信息"></textarea>
+                        <label class="form-label">澶囨敞</label>
+                        <textarea class="form-control" id="vehicleRemark" placeholder="鍏朵粬澶囨敞淇℃伅"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal('vehicleModal')">取消</button>
-                <button class="btn btn-primary" onclick="saveVehicle()">保存</button>
+                <button class="btn btn-secondary" onclick="closeModal('vehicleModal')">鍙栨秷</button>
+                <button class="btn btn-primary" onclick="saveVehicle()">淇濆瓨</button>
             </div>
         </div>
     </div>
@@ -1423,7 +1256,7 @@
     <div class="modal-overlay" id="usageModal">
         <div class="modal">
             <div class="modal-header">
-                <span class="modal-title" id="usageModalTitle">登记用车</span>
+                <span class="modal-title" id="usageModalTitle">鐧昏鐢ㄨ溅</span>
                 <button class="modal-close" onclick="closeModal('usageModal')">&times;</button>
             </div>
             <div class="modal-body">
@@ -1431,90 +1264,90 @@
                     <input type="hidden" id="usageId">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">车牌号 *</label>
+                            <label class="form-label">杞︾墝鍙?*</label>
                             <select class="form-control" id="usageVehicle" required></select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">用车人 *</label>
-                            <input type="text" class="form-control" id="usagePerson" required placeholder="输入或选择" list="personHistory">
+                            <label class="form-label">鐢ㄨ溅浜?*</label>
+                            <input type="text" class="form-control" id="usagePerson" required placeholder="杈撳叆鎴栭€夋嫨" list="personHistory">
                             <datalist id="personHistory"></datalist>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">乘坐人</label>
-                        <input type="text" class="form-control" id="usagePassengers" placeholder="如：王总、李经理（多人用逗号分隔）">
+                        <label class="form-label">涔樺潗浜?/label>
+                        <input type="text" class="form-control" id="usagePassengers" placeholder="濡傦細鐜嬫€汇€佹潕缁忕悊锛堝浜虹敤閫楀彿鍒嗛殧锛?>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">开始时间 *</label>
+                            <label class="form-label">寮€濮嬫椂闂?*</label>
                             <input type="datetime-local" class="form-control" id="usageStartTime" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">结束时间</label>
+                            <label class="form-label">缁撴潫鏃堕棿</label>
                             <input type="datetime-local" class="form-control" id="usageEndTime">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">目的地 *</label>
-                        <input type="text" class="form-control" id="usageDestination" required placeholder="用车前往地点">
+                        <label class="form-label">鐩殑鍦?*</label>
+                        <input type="text" class="form-control" id="usageDestination" required placeholder="鐢ㄨ溅鍓嶅線鍦扮偣">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">用车事由 *</label>
-                        <textarea class="form-control" id="usageReason" required placeholder="用车原因说明"></textarea>
+                        <label class="form-label">鐢ㄨ溅浜嬬敱 *</label>
+                        <textarea class="form-control" id="usageReason" required placeholder="鐢ㄨ溅鍘熷洜璇存槑"></textarea>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">出发里程(km)</label>
-                            <input type="number" class="form-control" id="usageStartMileage" inputmode="numeric" placeholder="出发时里程">
+                            <label class="form-label">鍑哄彂閲岀▼(km)</label>
+                            <input type="number" class="form-control" id="usageStartMileage" inputmode="numeric" placeholder="鍑哄彂鏃堕噷绋?>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">返回里程(km)</label>
-                            <input type="number" class="form-control" id="usageEndMileage" inputmode="numeric" placeholder="返回时里程">
+                            <label class="form-label">杩斿洖閲岀▼(km)</label>
+                            <input type="number" class="form-control" id="usageEndMileage" inputmode="numeric" placeholder="杩斿洖鏃堕噷绋?>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">停车费(元)</label>
+                            <label class="form-label">鍋滆溅璐?鍏?</label>
                             <input type="number" class="form-control" id="usageParking" inputmode="decimal" placeholder="0" step="0.01" min="0">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">加油费(元)</label>
+                            <label class="form-label">鍔犳补璐?鍏?</label>
                             <input type="number" class="form-control" id="usageFuel" inputmode="decimal" placeholder="0" step="0.01" min="0">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">高速费(元)</label>
+                            <label class="form-label">楂橀€熻垂(鍏?</label>
                             <input type="number" class="form-control" id="usageToll" inputmode="decimal" placeholder="0" step="0.01" min="0">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">洗车费(元)</label>
+                            <label class="form-label">娲楄溅璐?鍏?</label>
                             <input type="number" class="form-control" id="usageCarWash" inputmode="decimal" placeholder="0" step="0.01" min="0">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">餐补(元)</label>
+                        <label class="form-label">椁愯ˉ(鍏?</label>
                         <input type="number" class="form-control" id="usageMeal" inputmode="decimal" placeholder="0" step="0.01" min="0">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">状态</label>
+                        <label class="form-label">鐘舵€?/label>
                         <select class="form-control" id="usageStatus">
-                            <option value="使用中">使用中</option>
-                            <option value="已完成">已完成</option>
+                            <option value="浣跨敤涓?>浣跨敤涓?/option>
+                            <option value="宸插畬鎴?>宸插畬鎴?/option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">报销状态</label>
+                        <label class="form-label">鎶ラ攢鐘舵€?/label>
                         <select class="form-control" id="usageReimburseStatus">
-                            <option value="未报销">未报销</option>
-                            <option value="已报销">已报销</option>
+                            <option value="鏈姤閿€">鏈姤閿€</option>
+                            <option value="宸叉姤閿€">宸叉姤閿€</option>
                         </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal('usageModal')">取消</button>
-                <button class="btn btn-primary" onclick="saveUsage()">保存</button>
+                <button class="btn btn-secondary" onclick="closeModal('usageModal')">鍙栨秷</button>
+                <button class="btn btn-primary" onclick="saveUsage()">淇濆瓨</button>
             </div>
         </div>
     </div>
@@ -1523,7 +1356,7 @@
     <div class="modal-overlay" id="maintenanceModal">
         <div class="modal">
             <div class="modal-header">
-                <span class="modal-title" id="maintenanceModalTitle">登记维修保养</span>
+                <span class="modal-title" id="maintenanceModalTitle">鐧昏缁翠慨淇濆吇</span>
                 <button class="modal-close" onclick="closeModal('maintenanceModal')">&times;</button>
             </div>
             <div class="modal-body">
@@ -1531,47 +1364,47 @@
                     <input type="hidden" id="maintenanceId">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">车牌号 *</label>
+                            <label class="form-label">杞︾墝鍙?*</label>
                             <select class="form-control" id="maintenanceVehicle" required></select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">维修类型 *</label>
+                            <label class="form-label">缁翠慨绫诲瀷 *</label>
                             <select class="form-control" id="maintenanceType" required>
-                                <option value="">请选择</option>
-                                <option value="保养">保养</option>
-                                <option value="维修">维修</option>
-                                <option value="年检">年检</option>
-                                <option value="保险">保险</option>
+                                <option value="">璇烽€夋嫨</option>
+                                <option value="淇濆吇">淇濆吇</option>
+                                <option value="缁翠慨">缁翠慨</option>
+                                <option value="骞存">骞存</option>
+                                <option value="淇濋櫓">淇濋櫓</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">维修日期 *</label>
+                            <label class="form-label">缁翠慨鏃ユ湡 *</label>
                             <input type="date" class="form-control" id="maintenanceDate" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">费用(元)</label>
-                            <input type="number" class="form-control" id="maintenanceCost" inputmode="decimal" placeholder="维修费用" step="0.01">
+                            <label class="form-label">璐圭敤(鍏?</label>
+                            <input type="number" class="form-control" id="maintenanceCost" inputmode="decimal" placeholder="缁翠慨璐圭敤" step="0.01">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">维修内容 *</label>
-                        <textarea class="form-control" id="maintenanceContent" required placeholder="详细维修/保养项目"></textarea>
+                        <label class="form-label">缁翠慨鍐呭 *</label>
+                        <textarea class="form-control" id="maintenanceContent" required placeholder="璇︾粏缁翠慨/淇濆吇椤圭洰"></textarea>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">维修商</label>
-                        <input type="text" class="form-control" id="maintenanceVendor" placeholder="维修店铺/服务商">
+                        <label class="form-label">缁翠慨鍟?/label>
+                        <input type="text" class="form-control" id="maintenanceVendor" placeholder="缁翠慨搴楅摵/鏈嶅姟鍟?>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">备注</label>
-                        <textarea class="form-control" id="maintenanceRemark" placeholder="其他备注"></textarea>
+                        <label class="form-label">澶囨敞</label>
+                        <textarea class="form-control" id="maintenanceRemark" placeholder="鍏朵粬澶囨敞"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal('maintenanceModal')">取消</button>
-                <button class="btn btn-primary" onclick="saveMaintenance()">保存</button>
+                <button class="btn btn-secondary" onclick="closeModal('maintenanceModal')">鍙栨秷</button>
+                <button class="btn btn-primary" onclick="saveMaintenance()">淇濆瓨</button>
             </div>
         </div>
     </div>
@@ -1591,10 +1424,10 @@
         function initializeSampleData() {
             if (!localStorage.getItem(DB_KEYS.vehicles)) {
                 const vehicles = [
-                    { id: 1, plateNumber: '粤A12345', brandModel: '丰田凯美瑞 2.0', purchaseDate: '2022-03-15', totalMileage: 45600, status: '可用', remark: '公务用车' },
-                    { id: 2, plateNumber: '粤B67890', brandModel: '本田雅阁 2.5', purchaseDate: '2021-08-20', totalMileage: 68200, status: '可用', remark: '商务接待' },
-                    { id: 3, plateNumber: '粤C11111', brandModel: '别克GL8', purchaseDate: '2023-01-10', totalMileage: 32000, status: '使用中', remark: '商务用车' },
-                    { id: 4, plateNumber: '粤D22222', brandModel: '大众帕萨特', purchaseDate: '2020-05-01', totalMileage: 89000, status: '维修中', remark: '需更换刹车片' }
+                    { id: 1, plateNumber: '绮12345', brandModel: '涓扮敯鍑編鐟?2.0', purchaseDate: '2022-03-15', totalMileage: 45600, status: '鍙敤', remark: '鍏姟鐢ㄨ溅' },
+                    { id: 2, plateNumber: '绮67890', brandModel: '鏈敯闆呴榿 2.5', purchaseDate: '2021-08-20', totalMileage: 68200, status: '鍙敤', remark: '鍟嗗姟鎺ュ緟' },
+                    { id: 3, plateNumber: '绮11111', brandModel: '鍒厠GL8', purchaseDate: '2023-01-10', totalMileage: 32000, status: '浣跨敤涓?, remark: '鍟嗗姟鐢ㄨ溅' },
+                    { id: 4, plateNumber: '绮22222', brandModel: '澶т紬甯曡惃鐗?, purchaseDate: '2020-05-01', totalMileage: 89000, status: '缁翠慨涓?, remark: '闇€鏇存崲鍒硅溅鐗? }
                 ];
                 localStorage.setItem(DB_KEYS.vehicles, JSON.stringify(vehicles));
             }
@@ -1602,20 +1435,20 @@
             if (!localStorage.getItem(DB_KEYS.usage)) {
                 const now = new Date();
                 const usage = [
-                    { id: 1, vehicleId: 1, plateNumber: '粤A12345', person: '张三', startTime: '2026-05-10T08:30', endTime: '2026-05-10T12:00', destination: '白云区工业园', reason: '拜访客户', startMileage: 45600, endMileage: 45680, status: '已完成' },
-                    { id: 2, vehicleId: 3, plateNumber: '粤C11111', person: '李四', startTime: '2026-05-12T09:00', endTime: '', destination: '深圳宝安机场', reason: '接机', startMileage: 32000, endMileage: '', status: '使用中' },
-                    { id: 3, vehicleId: 2, plateNumber: '粤B67890', person: '王五', startTime: '2026-05-08T14:00', endTime: '2026-05-08T18:30', destination: '佛山顺德区', reason: '供应商验货', startMileage: 68200, endMileage: 68320, status: '已完成' },
-                    { id: 4, vehicleId: 1, plateNumber: '粤A12345', person: '赵六', startTime: '2026-05-05T10:00', endTime: '2026-05-05T16:00', destination: '东莞长安镇', reason: '工厂巡查', startMileage: 45550, endMileage: 45600, status: '已完成' }
+                    { id: 1, vehicleId: 1, plateNumber: '绮12345', person: '寮犱笁', startTime: '2026-05-10T08:30', endTime: '2026-05-10T12:00', destination: '鐧戒簯鍖哄伐涓氬洯', reason: '鎷滆瀹㈡埛', startMileage: 45600, endMileage: 45680, status: '宸插畬鎴? },
+                    { id: 2, vehicleId: 3, plateNumber: '绮11111', person: '鏉庡洓', startTime: '2026-05-12T09:00', endTime: '', destination: '娣卞湷瀹濆畨鏈哄満', reason: '鎺ユ満', startMileage: 32000, endMileage: '', status: '浣跨敤涓? },
+                    { id: 3, vehicleId: 2, plateNumber: '绮67890', person: '鐜嬩簲', startTime: '2026-05-08T14:00', endTime: '2026-05-08T18:30', destination: '浣涘北椤哄痉鍖?, reason: '渚涘簲鍟嗛獙璐?, startMileage: 68200, endMileage: 68320, status: '宸插畬鎴? },
+                    { id: 4, vehicleId: 1, plateNumber: '绮12345', person: '璧靛叚', startTime: '2026-05-05T10:00', endTime: '2026-05-05T16:00', destination: '涓滆帪闀垮畨闀?, reason: '宸ュ巶宸℃煡', startMileage: 45550, endMileage: 45600, status: '宸插畬鎴? }
                 ];
                 localStorage.setItem(DB_KEYS.usage, JSON.stringify(usage));
             }
             
             if (!localStorage.getItem(DB_KEYS.maintenance)) {
                 const maintenance = [
-                    { id: 1, vehicleId: 1, plateNumber: '粤A12345', type: '保养', date: '2026-04-15', content: '更换机油、机滤、空气滤清器', cost: 580, vendor: '丰田4S店', remark: '定期保养' },
-                    { id: 2, vehicleId: 4, plateNumber: '粤D22222', type: '维修', date: '2026-05-10', content: '更换刹车片、前轮刹车盘', cost: 1200, vendor: '大众专修', remark: '刹车异响维修' },
-                    { id: 3, vehicleId: 2, plateNumber: '粤B67890', type: '年检', date: '2026-03-20', content: '年度安全技术检验', cost: 300, vendor: '车管所', remark: '通过年检' },
-                    { id: 4, vehicleId: 3, plateNumber: '粤C11111', type: '保险', date: '2026-01-05', content: '交强险、商业险续保', cost: 4500, vendor: '平安保险', remark: '全保' }
+                    { id: 1, vehicleId: 1, plateNumber: '绮12345', type: '淇濆吇', date: '2026-04-15', content: '鏇存崲鏈烘补銆佹満婊ゃ€佺┖姘旀护娓呭櫒', cost: 580, vendor: '涓扮敯4S搴?, remark: '瀹氭湡淇濆吇' },
+                    { id: 2, vehicleId: 4, plateNumber: '绮22222', type: '缁翠慨', date: '2026-05-10', content: '鏇存崲鍒硅溅鐗囥€佸墠杞埞杞︾洏', cost: 1200, vendor: '澶т紬涓撲慨', remark: '鍒硅溅寮傚搷缁翠慨' },
+                    { id: 3, vehicleId: 2, plateNumber: '绮67890', type: '骞存', date: '2026-03-20', content: '骞村害瀹夊叏鎶€鏈楠?, cost: 300, vendor: '杞︾鎵€', remark: '閫氳繃骞存' },
+                    { id: 4, vehicleId: 3, plateNumber: '绮11111', type: '淇濋櫓', date: '2026-01-05', content: '浜ゅ己闄┿€佸晢涓氶櫓缁繚', cost: 4500, vendor: '骞冲畨淇濋櫓', remark: '鍏ㄤ繚' }
                 ];
                 localStorage.setItem(DB_KEYS.maintenance, JSON.stringify(maintenance));
             }
@@ -1628,50 +1461,6 @@
         
         function setData(key, data) {
             localStorage.setItem(key, JSON.stringify(data));
-        }
-        
-        // ==================== 数据备份 ====================
-        function exportData() {
-            const data = {
-                vehicles: getData(DB_KEYS.vehicles),
-                usage: getData(DB_KEYS.usage),
-                maintenance: getData(DB_KEYS.maintenance),
-                exportTime: new Date().toISOString()
-            };
-            const json = JSON.stringify(data, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `车辆管理备份_${new Date().toLocaleDateString('zh-CN').replace(/\//g, '-')}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('数据已导出', 'success');
-        }
-        
-        function importData() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        if (data.vehicles) setData(DB_KEYS.vehicles, data.vehicles);
-                        if (data.usage) setData(DB_KEYS.usage, data.usage);
-                        if (data.maintenance) setData(DB_KEYS.maintenance, data.maintenance);
-                        showToast('数据已导入，请刷新页面', 'success');
-                        setTimeout(() => location.reload(), 1500);
-                    } catch (err) {
-                        showToast('导入失败：文件格式错误', 'error');
-                    }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
         }
         
         // ==================== Navigation ====================
@@ -1696,9 +1485,9 @@
             const maintenance = getData(DB_KEYS.maintenance);
             
             const totalVehicles = vehicles.length;
-            const availableVehicles = vehicles.filter(v => v.status === '可用').length;
-            const inUseVehicles = vehicles.filter(v => v.status === '使用中').length;
-            const underRepair = vehicles.filter(v => v.status === '维修中').length;
+            const availableVehicles = vehicles.filter(v => v.status === '鍙敤').length;
+            const inUseVehicles = vehicles.filter(v => v.status === '浣跨敤涓?).length;
+            const underRepair = vehicles.filter(v => v.status === '缁翠慨涓?).length;
             
             const now = new Date();
             const thisMonth = now.getMonth();
@@ -1716,9 +1505,9 @@
                 })
                 .reduce((sum, m) => sum + (parseFloat(m.cost) || 0), 0);
             
-            // 计算未报销费用
+            // 璁＄畻鏈姤閿€璐圭敤
             const unpaidCost = usage
-                .filter(u => u.reimburseStatus !== '已报销')
+                .filter(u => u.reimburseStatus !== '宸叉姤閿€')
                 .reduce((sum, u) => {
                     return sum + (parseFloat(u.parking) || 0)
                         + (parseFloat(u.fuel) || 0)
@@ -1726,39 +1515,39 @@
                         + (parseFloat(u.carWash) || 0)
                         + (parseFloat(u.meal) || 0);
                 }, 0);
-            const unpaidCount = usage.filter(u => u.reimburseStatus !== '已报销').length;
+            const unpaidCount = usage.filter(u => u.reimburseStatus !== '宸叉姤閿€').length;
             
             // Stats Grid
             document.getElementById('statsGrid').innerHTML = `
                 <div class="stat-card">
                     <div class="stat-value">${totalVehicles}</div>
-                    <div class="stat-label">车辆总数</div>
+                    <div class="stat-label">杞﹁締鎬绘暟</div>
                 </div>
                 <div class="stat-card success">
                     <div class="stat-value">${availableVehicles}</div>
-                    <div class="stat-label">可用车辆</div>
+                    <div class="stat-label">鍙敤杞﹁締</div>
                 </div>
                 <div class="stat-card warning">
                     <div class="stat-value">${inUseVehicles}</div>
-                    <div class="stat-label">使用中</div>
+                    <div class="stat-label">浣跨敤涓?/div>
                 </div>
                 <div class="stat-card danger">
                     <div class="stat-value">${underRepair}</div>
-                    <div class="stat-label">维修中</div>
+                    <div class="stat-label">缁翠慨涓?/div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">${thisMonthUsage}</div>
-                    <div class="stat-label">本月用车</div>
-                    <div class="stat-change up">↑ ${Math.round(thisMonthUsage / 12)}%</div>
+                    <div class="stat-label">鏈湀鐢ㄨ溅</div>
+                    <div class="stat-change up">鈫?${Math.round(thisMonthUsage / 12)}%</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">¥${thisMonthCost.toLocaleString()}</div>
-                    <div class="stat-label">本月维修费</div>
+                    <div class="stat-value">楼${thisMonthCost.toLocaleString()}</div>
+                    <div class="stat-label">鏈湀缁翠慨璐?/div>
                 </div>
-                <div class="stat-card warning" onclick="switchSection('usage'); document.getElementById('usageReimburseFilter').value='未报销'; filterUsage();">
-                    <div class="stat-value">¥${unpaidCost.toLocaleString()}</div>
-                    <div class="stat-label">待报销费用</div>
-                    <div class="stat-change">${unpaidCount}笔未报</div>
+                <div class="stat-card warning" onclick="switchSection('usage'); document.getElementById('usageReimburseFilter').value='鏈姤閿€'; filterUsage();">
+                    <div class="stat-value">楼${unpaidCost.toLocaleString()}</div>
+                    <div class="stat-label">寰呮姤閿€璐圭敤</div>
+                    <div class="stat-change">${unpaidCount}绗旀湭鎶?/div>
                 </div>
             `;
             
@@ -1767,7 +1556,7 @@
             const usageData = [];
             for (let i = 5; i >= 0; i--) {
                 const d = new Date(thisYear, thisMonth - i, 1);
-                const monthStr = `${d.getMonth() + 1}月`;
+                const monthStr = `${d.getMonth() + 1}鏈坄;
                 const count = usage.filter(u => {
                     const ud = new Date(u.startTime);
                     return ud.getMonth() === d.getMonth() && ud.getFullYear() === d.getFullYear();
@@ -1781,7 +1570,7 @@
                 <div class="bar-item">
                     <span class="bar-label">${months[i]}</span>
                     <div class="bar-track">
-                        <div class="bar-fill primary" style="width: ${(count/maxUsage)*100}%">${count}次</div>
+                        <div class="bar-fill primary" style="width: ${(count/maxUsage)*100}%">${count}娆?/div>
                     </div>
                 </div>
             `).join('');
@@ -1804,7 +1593,7 @@
                 <div class="bar-item">
                     <span class="bar-label">${months[i]}</span>
                     <div class="bar-track">
-                        <div class="bar-fill danger" style="width: ${(cost/maxCost)*100}%">¥${cost.toLocaleString()}</div>
+                        <div class="bar-fill danger" style="width: ${(cost/maxCost)*100}%">楼${cost.toLocaleString()}</div>
                     </div>
                 </div>
             `).join('');
@@ -1817,7 +1606,7 @@
                 const cost = usage
                     .filter(u => {
                         const ud = new Date(u.startTime);
-                        return ud >= d && ud < nextMonth && u.reimburseStatus !== '已报销';
+                        return ud >= d && ud < nextMonth && u.reimburseStatus !== '宸叉姤閿€';
                     })
                     .reduce((sum, u) => sum + (parseFloat(u.parking) || 0)
                         + (parseFloat(u.fuel) || 0)
@@ -1832,7 +1621,7 @@
                 <div class="bar-item">
                     <span class="bar-label">${months[i]}</span>
                     <div class="bar-track">
-                        <div class="bar-fill purple" style="width: ${(cost/maxUnpaid)*100}%">¥${cost.toLocaleString()}</div>
+                        <div class="bar-fill purple" style="width: ${(cost/maxUnpaid)*100}%">楼${cost.toLocaleString()}</div>
                     </div>
                 </div>
             `).join('');
@@ -1840,14 +1629,14 @@
             // Recent Activity
             const recentUsage = usage.slice(-3).reverse().map(u => ({
                 type: 'use',
-                icon: '🚗',
+                icon: '馃殫',
                 title: `${u.plateNumber} - ${u.person}`,
                 meta: `${u.destination} | ${u.startTime.slice(0,10)}`
             }));
             
             const recentMaintenance = maintenance.slice(-2).reverse().map(m => ({
                 type: 'repair',
-                icon: '🔧',
+                icon: '馃敡',
                 title: `${m.plateNumber} - ${m.type}`,
                 meta: `${m.content.slice(0,20)}... | ${m.date}`
             }));
@@ -1864,7 +1653,7 @@
                         <div class="activity-meta">${a.meta}</div>
                     </div>
                 </div>
-            `).join('') : '<div class="empty-state"><p>暂无最近动态</p></div>';
+            `).join('') : '<div class="empty-state"><p>鏆傛棤鏈€杩戝姩鎬?/p></div>';
         }
         
         // ==================== Vehicles ====================
@@ -1887,16 +1676,16 @@
                     <td><strong>${v.plateNumber}</strong></td>
                     <td>${v.brandModel}</td>
                     <td>${v.purchaseDate || '-'}</td>
-                    <td><span class="badge ${v.status === '可用' ? 'badge-success' : v.status === '使用中' ? 'badge-warning' : v.status === '维修中' ? 'badge-danger' : 'badge-info'}">${v.status}</span></td>
+                    <td><span class="badge ${v.status === '鍙敤' ? 'badge-success' : v.status === '浣跨敤涓? ? 'badge-warning' : v.status === '缁翠慨涓? ? 'badge-danger' : 'badge-info'}">${v.status}</span></td>
                     <td>${v.totalMileage?.toLocaleString() || '-'}</td>
                     <td>
                         <div class="action-btns">
-                            <button type="button" class="btn btn-sm btn-secondary" onclick="editVehicle(${v.id})">编辑</button>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteVehicle(${v.id})">删除</button>
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="editVehicle(${v.id})">缂栬緫</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteVehicle(${v.id})">鍒犻櫎</button>
                         </div>
                     </td>
                 </tr>
-            `).join('') : '<tr><td colspan="6"><div class="empty-state"><p>暂无车辆数据</p></div></td></tr>';
+            `).join('') : '<tr><td colspan="6"><div class="empty-state"><p>鏆傛棤杞﹁締鏁版嵁</p></div></td></tr>';
             
             window._vehiclePage = page;
             renderPagination('vehiclesPagination', page, totalPages, 'renderVehicles', '_vehiclePage');
@@ -1909,7 +1698,7 @@
         function openVehicleModal(id = null) {
             document.getElementById('vehicleForm').reset();
             document.getElementById('vehicleId').value = '';
-            document.getElementById('vehicleModalTitle').textContent = id ? '编辑车辆' : '添加车辆';
+            document.getElementById('vehicleModalTitle').textContent = id ? '缂栬緫杞﹁締' : '娣诲姞杞﹁締';
             
             if (id) {
                 const vehicles = getData(DB_KEYS.vehicles);
@@ -1937,7 +1726,7 @@
             const plateNumber = document.getElementById('plateNumber').value.trim();
             
             if (!plateNumber) {
-                showToast('请输入车牌号', 'error');
+                showToast('璇疯緭鍏ヨ溅鐗屽彿', 'error');
                 return;
             }
             
@@ -1963,16 +1752,16 @@
             setData(DB_KEYS.vehicles, vehicles);
             closeModal('vehicleModal');
             renderVehicles();
-            showToast(id ? '车辆已更新' : '车辆已添加', 'success');
+            showToast(id ? '杞﹁締宸叉洿鏂? : '杞﹁締宸叉坊鍔?, 'success');
         }
         
         function deleteVehicle(id) {
-            if (!confirm('确定要删除这辆车的信息吗？')) return;
+            if (!confirm('纭畾瑕佸垹闄よ繖杈嗚溅鐨勪俊鎭悧锛?)) return;
             
             const vehicles = getData(DB_KEYS.vehicles);
             const newVehicles = vehicles.filter(v => v.id !== id);
             setData(DB_KEYS.vehicles, newVehicles);
-            showToast('车辆已删除', 'success');
+            showToast('杞﹁締宸插垹闄?, 'success');
             // Refresh the table
             if (typeof renderVehicles === 'function') {
                 renderVehicles(window._vehiclePage || 1);
@@ -1982,7 +1771,7 @@
         // ==================== Usage ====================
         function populateVehicleSelects() {
             const vehicles = getData(DB_KEYS.vehicles);
-            const availableVehicles = vehicles.filter(v => v.status !== '报废');
+            const availableVehicles = vehicles.filter(v => v.status !== '鎶ュ簾');
             const options = availableVehicles.map(v => `<option value="${v.id}">${v.plateNumber} - ${v.brandModel}</option>`).join('');
             
             document.getElementById('usageVehicle').innerHTML = options;
@@ -2000,7 +1789,7 @@
                     u.person.toLowerCase().includes(search) ||
                     u.destination.toLowerCase().includes(search);
                 const matchFilter = !filter || u.status === filter;
-                const matchReimburse = !reimburseFilter || (u.reimburseStatus || '未报销') === reimburseFilter;
+                const matchReimburse = !reimburseFilter || (u.reimburseStatus || '鏈姤閿€') === reimburseFilter;
                 return matchSearch && matchFilter && matchReimburse;
             }).sort((a, b) => new Date(b.startTime) - new Date(a.startTime));
             
@@ -2010,7 +1799,7 @@
             const paged = filtered.slice(start, start + pageSize);
             
             if (!paged.length) {
-                document.getElementById('usageTable').innerHTML = '<tr><td colspan="8"><div class="empty-state"><p>暂无用车记录</p></div></td></tr>';
+                document.getElementById('usageTable').innerHTML = '<tr><td colspan="8"><div class="empty-state"><p>鏆傛棤鐢ㄨ溅璁板綍</p></div></td></tr>';
                 window._usagePage = page;
                 renderPagination('usagePagination', page, totalPages, 'renderUsage', '_usagePage');
                 return;
@@ -2023,38 +1812,38 @@
                 const carWash = parseFloat(u.carWash) || 0;
                 const meal = parseFloat(u.meal) || 0;
                 const totalCost = parking + fuel + toll + carWash + meal;
-                const reimburseStatus = u.reimburseStatus || '未报销';
-                const isReimbursed = reimburseStatus === '已报销';
+                const reimburseStatus = u.reimburseStatus || '鏈姤閿€';
+                const isReimbursed = reimburseStatus === '宸叉姤閿€';
                 const distance = (u.endMileage && u.startMileage) ? (u.endMileage - u.startMileage) : null;
                 
-                // 费用明细标签
+                // 璐圭敤鏄庣粏鏍囩
                 const costTags = [];
-                if (parking > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">停车</span>¥${parking.toFixed(2)}</span>`);
-                if (fuel > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">加油</span>¥${fuel.toFixed(2)}</span>`);
-                if (toll > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">高速</span>¥${toll.toFixed(2)}</span>`);
-                if (carWash > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">洗车</span>¥${carWash.toFixed(2)}</span>`);
-                if (meal > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">餐补</span>¥${meal.toFixed(2)}</span>`);
-                if (totalCost > 0) costTags.push(`<span class="cost-tag cost-total-tag">合计 ¥${totalCost.toFixed(2)}</span>`);
+                if (parking > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">鍋滆溅</span>楼${parking.toFixed(2)}</span>`);
+                if (fuel > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">鍔犳补</span>楼${fuel.toFixed(2)}</span>`);
+                if (toll > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">楂橀€?/span>楼${toll.toFixed(2)}</span>`);
+                if (carWash > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">娲楄溅</span>楼${carWash.toFixed(2)}</span>`);
+                if (meal > 0) costTags.push(`<span class="cost-tag"><span class="cost-tag-label">椁愯ˉ</span>楼${meal.toFixed(2)}</span>`);
+                if (totalCost > 0) costTags.push(`<span class="cost-tag cost-total-tag">鍚堣 楼${totalCost.toFixed(2)}</span>`);
                 
                 const mainRow = `
                     <tr class="usage-main-row" onclick="toggleUsageDetail(${u.id})">
                         <td><strong>${u.plateNumber}</strong></td>
-                        <td>${u.person}${u.passengers ? `<br><span style="font-size:0.75rem;color:var(--gray-500)">乘：${u.passengers}</span>` : ''}</td>
+                        <td>${u.person}${u.passengers ? `<br><span style="font-size:0.75rem;color:var(--gray-500)">涔橈細${u.passengers}</span>` : ''}</td>
                         <td>${u.startTime.replace('T', ' ')}</td>
                         <td>${u.destination}</td>
                         <td>${distance !== null ? distance + 'km' : '-'}</td>
-                        <td>${totalCost > 0 ? '<span style="color:#1e40af;font-weight:600">¥' + totalCost.toFixed(2) + '</span>' : '<span style="color:var(--gray-400)">-</span>'}</td>
-                        <td><span class="badge ${u.status === '已完成' ? 'badge-success' : 'badge-warning'}">${u.status}</span>
+                        <td>${totalCost > 0 ? '<span style="color:#1e40af;font-weight:600">楼' + totalCost.toFixed(2) + '</span>' : '<span style="color:var(--gray-400)">-</span>'}</td>
+                        <td><span class="badge ${u.status === '宸插畬鎴? ? 'badge-success' : 'badge-warning'}">${u.status}</span>
                             ${totalCost > 0 ? `<br><span class="badge ${isReimbursed ? 'badge-purple' : 'badge-gray'}" style="margin-top:3px">${reimburseStatus}</span>` : ''}
                         </td>
                         <td onclick="event.stopPropagation()">
                             <div class="action-btns">
                                 ${totalCost > 0 && !isReimbursed
-                                    ? `<button type="button" class="btn btn-sm btn-reimburse" onclick="markReimbursed(${u.id})">报销✓</button>`
+                                    ? `<button type="button" class="btn btn-sm btn-reimburse" onclick="markReimbursed(${u.id})">鎶ラ攢鉁?/button>`
                                     : ''
                                 }
-                                <button type="button" class="btn btn-sm btn-secondary" onclick="editUsage(${u.id})">编辑</button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteUsage(${u.id})">删除</button>
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="editUsage(${u.id})">缂栬緫</button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteUsage(${u.id})">鍒犻櫎</button>
                             </div>
                         </td>
                     </tr>
@@ -2066,34 +1855,34 @@
                             <div class="usage-detail-inner">
                                 <div class="detail-grid">
                                     <div class="detail-item">
-                                        <span class="detail-label">出发里程</span>
-                                        <span class="detail-value">${u.startMileage ? u.startMileage.toLocaleString() + ' km' : '未填写'}</span>
+                                        <span class="detail-label">鍑哄彂閲岀▼</span>
+                                        <span class="detail-value">${u.startMileage ? u.startMileage.toLocaleString() + ' km' : '鏈～鍐?}</span>
                                     </div>
                                     <div class="detail-item">
-                                        <span class="detail-label">返回里程</span>
-                                        <span class="detail-value">${u.endMileage ? u.endMileage.toLocaleString() + ' km' : '未填写'}</span>
+                                        <span class="detail-label">杩斿洖閲岀▼</span>
+                                        <span class="detail-value">${u.endMileage ? u.endMileage.toLocaleString() + ' km' : '鏈～鍐?}</span>
                                     </div>
                                     <div class="detail-item">
-                                        <span class="detail-label">行驶里程</span>
-                                        <span class="detail-value highlight">${distance !== null ? distance + ' km' : '未完成'}</span>
+                                        <span class="detail-label">琛岄┒閲岀▼</span>
+                                        <span class="detail-value highlight">${distance !== null ? distance + ' km' : '鏈畬鎴?}</span>
                                     </div>
                                     <div class="detail-item">
-                                        <span class="detail-label">结束时间</span>
-                                        <span class="detail-value">${u.endTime ? u.endTime.replace('T', ' ') : '使用中'}</span>
+                                        <span class="detail-label">缁撴潫鏃堕棿</span>
+                                        <span class="detail-value">${u.endTime ? u.endTime.replace('T', ' ') : '浣跨敤涓?}</span>
                                     </div>
                                     <div class="detail-item">
-                                        <span class="detail-label">乘坐人</span>
-                                        <span class="detail-value">${u.passengers || '<span style="color:var(--gray-400)">未填写</span>'}</span>
+                                        <span class="detail-label">涔樺潗浜?/span>
+                                        <span class="detail-value">${u.passengers || '<span style="color:var(--gray-400)">鏈～鍐?/span>'}</span>
                                     </div>
                                     <div class="detail-item">
-                                        <span class="detail-label">用车事由</span>
+                                        <span class="detail-label">鐢ㄨ溅浜嬬敱</span>
                                         <span class="detail-value">${u.reason || '-'}</span>
                                     </div>
                                 </div>
                                 ${totalCost > 0 ? `
                                 <hr class="detail-divider">
                                 <div class="detail-item" style="margin-bottom:0.5rem">
-                                    <span class="detail-label">费用明细</span>
+                                    <span class="detail-label">璐圭敤鏄庣粏</span>
                                 </div>
                                 <div class="cost-breakdown">${costTags.join('')}</div>
                                 ` : ''}
@@ -2115,10 +1904,10 @@
             const detailRow = document.getElementById(`detail-${id}`);
             if (!mainRow || !detailRow) return;
             const isExpanded = mainRow.classList.contains('expanded');
-            // 折叠所有
+            // 鎶樺彔鎵€鏈?
             document.querySelectorAll('.usage-main-row.expanded').forEach(r => r.classList.remove('expanded'));
             document.querySelectorAll('.usage-detail-row.show').forEach(r => r.classList.remove('show'));
-            // 如果之前是折叠的，则展开
+            // 濡傛灉涔嬪墠鏄姌鍙犵殑锛屽垯灞曞紑
             if (!isExpanded) {
                 mainRow.classList.add('expanded');
                 detailRow.classList.add('show');
@@ -2132,7 +1921,7 @@
         function openUsageModal(id = null) {
             document.getElementById('usageForm').reset();
             document.getElementById('usageId').value = '';
-            document.getElementById('usageModalTitle').textContent = id ? '编辑用车记录' : '登记用车';
+            document.getElementById('usageModalTitle').textContent = id ? '缂栬緫鐢ㄨ溅璁板綍' : '鐧昏鐢ㄨ溅';
             populateVehicleSelects();
             loadPersonHistory();
             
@@ -2156,7 +1945,7 @@
                     document.getElementById('usageCarWash').value = u.carWash || '';
                     document.getElementById('usageMeal').value = u.meal || '';
                     document.getElementById('usageStatus').value = u.status;
-                    document.getElementById('usageReimburseStatus').value = u.reimburseStatus || '未报销';
+                    document.getElementById('usageReimburseStatus').value = u.reimburseStatus || '鏈姤閿€';
                 }
             }
             
@@ -2181,7 +1970,7 @@
             const startTime = document.getElementById('usageStartTime').value;
             
             if (!vehicleId || !person || !startTime) {
-                showToast('请填写必填项', 'error');
+                showToast('璇峰～鍐欏繀濉」', 'error');
                 return;
             }
             
@@ -2219,7 +2008,7 @@
             }
             
             // Update vehicle status
-            const status = data.status === '已完成' ? '可用' : '使用中';
+            const status = data.status === '宸插畬鎴? ? '鍙敤' : '浣跨敤涓?;
             const vehicleIdx = vehicles.findIndex(v => v.id === vehicleId);
             if (vehicleIdx !== -1) {
                 vehicles[vehicleIdx].status = status;
@@ -2233,16 +2022,16 @@
             setData(DB_KEYS.usage, usage);
             closeModal('usageModal');
             renderUsage();
-            showToast(id ? '记录已更新' : '用车已登记', 'success');
+            showToast(id ? '璁板綍宸叉洿鏂? : '鐢ㄨ溅宸茬櫥璁?, 'success');
         }
         
         function deleteUsage(id) {
-            if (!confirm('确定要删除这条记录吗？')) return;
+            if (!confirm('纭畾瑕佸垹闄よ繖鏉¤褰曞悧锛?)) return;
             
             const usage = getData(DB_KEYS.usage);
             const newUsage = usage.filter(u => u.id !== id);
             setData(DB_KEYS.usage, newUsage);
-            showToast('记录已删除', 'success');
+            showToast('璁板綍宸插垹闄?, 'success');
             if (typeof renderUsage === 'function') {
                 renderUsage(window._usagePage || 1);
             }
@@ -2252,9 +2041,9 @@
             const usage = getData(DB_KEYS.usage);
             const idx = usage.findIndex(u => u.id === id);
             if (idx !== -1) {
-                usage[idx].reimburseStatus = '已报销';
+                usage[idx].reimburseStatus = '宸叉姤閿€';
                 setData(DB_KEYS.usage, usage);
-                showToast('已标记为已报销 ✓', 'success');
+                showToast('宸叉爣璁颁负宸叉姤閿€ 鉁?, 'success');
                 renderUsage(window._usagePage || 1);
             }
         }
@@ -2280,19 +2069,19 @@
             document.getElementById('maintenanceTable').innerHTML = paged.length ? paged.map(m => `
                 <tr>
                     <td><strong>${m.plateNumber}</strong></td>
-                    <td><span class="badge ${m.type === '保养' ? 'badge-success' : m.type === '维修' ? 'badge-danger' : 'badge-info'}">${m.type}</span></td>
+                    <td><span class="badge ${m.type === '淇濆吇' ? 'badge-success' : m.type === '缁翠慨' ? 'badge-danger' : 'badge-info'}">${m.type}</span></td>
                     <td>${m.date}</td>
                     <td>${m.content}</td>
-                    <td>¥${parseFloat(m.cost || 0).toLocaleString()}</td>
+                    <td>楼${parseFloat(m.cost || 0).toLocaleString()}</td>
                     <td>${m.vendor || '-'}</td>
                     <td>
                         <div class="action-btns">
-                            <button type="button" class="btn btn-sm btn-secondary" onclick="editMaintenance(${m.id})">编辑</button>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteMaintenance(${m.id})">删除</button>
+                            <button type="button" class="btn btn-sm btn-secondary" onclick="editMaintenance(${m.id})">缂栬緫</button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteMaintenance(${m.id})">鍒犻櫎</button>
                         </div>
                     </td>
                 </tr>
-            `).join('') : '<tr><td colspan="7"><div class="empty-state"><p>暂无维修记录</p></div></td></tr>';
+            `).join('') : '<tr><td colspan="7"><div class="empty-state"><p>鏆傛棤缁翠慨璁板綍</p></div></td></tr>';
             
             window._maintenancePage = page;
             renderPagination('maintenancePagination', page, totalPages, 'renderMaintenance', '_maintenancePage');
@@ -2305,7 +2094,7 @@
         function openMaintenanceModal(id = null) {
             document.getElementById('maintenanceForm').reset();
             document.getElementById('maintenanceId').value = '';
-            document.getElementById('maintenanceModalTitle').textContent = id ? '编辑维修记录' : '登记维修保养';
+            document.getElementById('maintenanceModalTitle').textContent = id ? '缂栬緫缁翠慨璁板綍' : '鐧昏缁翠慨淇濆吇';
             populateVehicleSelects();
             
             if (id) {
@@ -2338,7 +2127,7 @@
             const content = document.getElementById('maintenanceContent').value.trim();
             
             if (!vehicleId || !type || !date || !content) {
-                showToast('请填写必填项', 'error');
+                showToast('璇峰～鍐欏繀濉」', 'error');
                 return;
             }
             
@@ -2367,10 +2156,10 @@
             }
             
             // Update vehicle status (if repair, mark as under repair; if completed, mark as available)
-            if (type === '维修') {
+            if (type === '缁翠慨') {
                 const vehicleIdx = vehicles.findIndex(v => v.id === vehicleId);
                 if (vehicleIdx !== -1) {
-                    vehicles[vehicleIdx].status = '维修中';
+                    vehicles[vehicleIdx].status = '缁翠慨涓?;
                     setData(DB_KEYS.vehicles, vehicles);
                 }
             }
@@ -2378,16 +2167,16 @@
             setData(DB_KEYS.maintenance, maintenance);
             closeModal('maintenanceModal');
             renderMaintenance();
-            showToast(id ? '记录已更新' : '维修已登记', 'success');
+            showToast(id ? '璁板綍宸叉洿鏂? : '缁翠慨宸茬櫥璁?, 'success');
         }
         
         function deleteMaintenance(id) {
-            if (!confirm('确定要删除这条记录吗？')) return;
+            if (!confirm('纭畾瑕佸垹闄よ繖鏉¤褰曞悧锛?)) return;
             
             const maintenance = getData(DB_KEYS.maintenance);
             const newMaintenance = maintenance.filter(m => m.id !== id);
             setData(DB_KEYS.maintenance, newMaintenance);
-            showToast('记录已删除', 'success');
+            showToast('璁板綍宸插垹闄?, 'success');
             if (typeof renderMaintenance === 'function') {
                 renderMaintenance(window._maintenancePage || 1);
             }
@@ -2424,7 +2213,7 @@
             let html = '';
             
             if (current > 1) {
-                html += `<button class="page-btn" data-page="${current - 1}" data-callback="${callbackName}">上一页</button>`;
+                html += `<button class="page-btn" data-page="${current - 1}" data-callback="${callbackName}">涓婁竴椤?/button>`;
             }
             
             for (let i = 1; i <= total; i++) {
@@ -2436,7 +2225,7 @@
             }
             
             if (current < total) {
-                html += `<button class="page-btn" data-page="${current + 1}" data-callback="${callbackName}">下一页</button>`;
+                html += `<button class="page-btn" data-page="${current + 1}" data-callback="${callbackName}">涓嬩竴椤?/button>`;
             }
             
             container.innerHTML = html;
@@ -2455,7 +2244,7 @@
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             toast.innerHTML = `
-                <span>${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span>
+                <span>${type === 'success' ? '鉁? : type === 'error' ? '鉁? : '鈩?}</span>
                 <span>${message}</span>
             `;
             container.appendChild(toast);
